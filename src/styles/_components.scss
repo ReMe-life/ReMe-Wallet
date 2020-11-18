@@ -1,0 +1,70 @@
+// Title component
+
+.title {
+    display: flex;
+    margin: 120px auto 0;
+    img {
+        margin-right: 12px;
+    }
+    i {
+        color: var(--headings);
+    }
+}
+
+// Login component 
+
+.login {
+    form {
+        margin-top: 15px;
+    }
+    min-width: 480px;
+    @media all and (max-width: 520px) {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .password-wrapper {
+        position: relative;
+        img {
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+    }
+}
+
+// Footer
+
+footer {
+    display: flex;
+    flex-direction: row;
+    margin: auto auto 45px;
+    align-items: center;
+    
+    img {
+        margin-right: 11px;
+    }
+
+    h3 {
+        font-size: 17px;
+        color: var(--footer-sub);
+        i {
+            color: var(--footer-brand);
+        }
+    }
+
+    .btn {
+        margin-left: 17px;
+        padding: 8px 16px;
+        @include rounded(18px);
+        background: var(--footer-btn);
+        color: var(--headings-primary);
+        transition: all 0.2s ease-out;
+        cursor: pointer;
+
+        &:hover {
+            background: var(--footer-btn-hover);
+        }
+    }
+}

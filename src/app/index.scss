@@ -1,0 +1,8 @@
+.application {
+  width: 100%;
+  min-height: 100vh;
+  background: url('./assets/img/background.jpg');
+  background-position: cover;
+  display: flex;
+  flex-direction: column;
+}
