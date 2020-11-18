@@ -3,12 +3,14 @@ import React, { Component, ReactNode } from 'react'
 import { AuthRender } from './renderers'
 import { UserService } from '../../../services'
 
+import { withAuth } from '../HOCs'
+
 type State = {
     email: string
     password: string
 }
 
-export class Auth extends Component<{ history: any }, State> {
+class Auth extends Component<{ history: any }, State> {
 
     public constructor (props: any) {
         super(props)
@@ -64,3 +66,5 @@ export class Auth extends Component<{ history: any }, State> {
     }
 
 }
+
+export default withAuth('/dashboard', Auth, '/')
