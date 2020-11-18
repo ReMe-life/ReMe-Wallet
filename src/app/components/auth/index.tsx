@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react'
 
 import { AuthRender } from './renderers'
+import { ErrorPopUp } from '../../errors'
 import { UserService } from '../../../services'
 
 import { withAuth } from '../HOCs'
@@ -64,9 +65,10 @@ class Auth extends Component<{ history: any }, State> {
             this.props.history.push('/dashboard')
         }
         catch (error) {
-            // Todo: show error
-            console.log(error)
             this.setState({ loading: false })
+
+            console.log(error)
+            ErrorPopUp.show('Invalid email or password')
         }
     }
 

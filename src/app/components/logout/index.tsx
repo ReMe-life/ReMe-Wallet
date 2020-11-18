@@ -21,18 +21,12 @@ export class Logout extends Component<{ history: any }, {}> {
     }
 
     public async logout () {
-        try {
-            await UserService.logout();
+        await UserService.logout();
 
-            localStorage.removeItem('userData');
-            localStorage.removeItem('userWallet');
+        localStorage.removeItem('userData');
+        localStorage.removeItem('userWallet');
 
-            this.props.history.push('/');
-        }
-        catch (error) {
-            // Todo: show error
-            console.log(error);
-        }
+        this.props.history.push('/');
     }
 
 }
