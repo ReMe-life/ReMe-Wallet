@@ -12,7 +12,7 @@ export const AuthRender = function (context: any) {
                         <input size={30} placeholder='password' type='password' className='form-control input' onChange={context.onPassword} />
                         <img src={PasswordToggle} alt='Show/hide password' />
                     </div>
-                    <button type='button' className='btn primary' onClick={context.auth}>Login</button>
+                    <button type='button' className='btn primary' disabled={context.state.loading} onClick={context.auth}> {context.state.loading ? <div className='loader'></div> : 'Login'}</button>
                 </form>
             </div>
         </section>

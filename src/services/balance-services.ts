@@ -13,20 +13,20 @@ class BalanceService {
         this.tokenContract = new ethers.Contract(BLOCKCHAIN_CONFIG.tokenAddress, tokenContractAbi.abi, this.provider)
     }
 
-    static getInstance() {
-        if(!BalanceService.instance) {
+    static getInstance () {
+        if (!BalanceService.instance) {
             BalanceService.instance = new BalanceService()
         }
         return BalanceService.instance
     }
 
-    public async ethAmount (accountAddress: string): Promise<string> {                
-        const ethAmount = await this.provider.getBalance(accountAddress);  
+    public async ethAmount (accountAddress: string): Promise<string> {
+        const ethAmount = await this.provider.getBalance(accountAddress);
         return ethAmount.toString()
     }
 
-    public async tokensAmount (accountAddress: string): Promise<string> {        
-        const tokensAmount = await this.tokenContract.balanceOf(accountAddress);   
+    public async tokensAmount (accountAddress: string): Promise<string> {
+        const tokensAmount = await this.tokenContract.balanceOf(accountAddress);
         return tokensAmount.toString()
     }
 

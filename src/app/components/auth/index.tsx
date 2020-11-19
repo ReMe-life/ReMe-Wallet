@@ -1,14 +1,18 @@
 import React, { Component, ReactNode } from 'react'
 
 import { AuthRender } from './renderers'
+import { ErrorPopUp } from '../../errors'
 import { UserService } from '../../../services'
+
+import { withAuth } from '../HOCs'
 
 type State = {
     email: string
     password: string
+    loading: boolean
 }
 
-export class Auth extends Component<{ history: any }, State> {
+class Auth extends Component<{ history: any }, State> {
 
     public constructor (props: any) {
         super(props)
@@ -20,7 +24,8 @@ export class Auth extends Component<{ history: any }, State> {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            loading: false
         }
     }
 
@@ -42,6 +47,8 @@ export class Auth extends Component<{ history: any }, State> {
 
     public async auth () {
         try {
+            this.setState({ loading: true })
+
             const email = this.state.email
             const password = this.state.password
 
@@ -58,9 +65,13 @@ export class Auth extends Component<{ history: any }, State> {
             this.props.history.push('/dashboard')
         }
         catch (error) {
-            // Todo: show error
+            this.setState({ loading: false })
+
             console.log(error)
+            ErrorPopUp.show('Invalid email or password')
         }
     }
 
 }
+
+export default withAuth('/dashboard', Auth, '/')
