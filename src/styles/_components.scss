@@ -20,7 +20,7 @@
     min-width: 480px;
     @media all and (max-width: 520px) {
         min-width: auto;
-        width: 100%;
+        margin: auto 15px 0;
     }
 
     .password-wrapper {
@@ -112,11 +112,199 @@ footer {
 
 // Error PopUp
 
-.noty_body{
+.noty_body {
   background-color: var(--headings);
 }
 
-.noty_text{
+.noty_text {
   color: var(--headings-primary);
 }
 
+// Profile 
+
+.profile-wrapper {
+  position: absolute;
+  right: 50px;
+  top: 40px;
+  color: var(--headings-primary);
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+
+  p {
+    margin: 0 25px 0 0;
+  }
+}
+
+// Home page
+
+.homepage {
+  max-width: 480px;
+
+  @media all and (max-width: 500px) {
+    max-width: auto;
+    margin: auto 15px 0;
+  }
+  .common-wrapper p {
+    padding: 16px 26px;
+    @include rounded(5px);
+    background: var(--primary100);
+    color: var(--primary500);
+    margin: 0 0 14px;
+
+    &:last-of-type {
+      background: var(--secondary100);
+      color: var(--secondary400);
+      margin: 0;
+    }
+  }
+
+  .claim {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px -35px 0 -35px;
+    padding: 38px 0 0;
+    width: calc(100% + 70px);
+    @include box-shadow(inset, 0, 8px, 22px, var(--primary-shadow));
+    color: var(--primary900);
+    font-size: 16px;
+    border-top: 1px solid var(--primary200);
+
+    .message {
+      padding: 0 35px;
+      margin-bottom: 7px;
+
+      strong {
+        color: var(--primary500);
+        margin: 0 10px;
+        font-size: 18px;
+      }
+
+      &.success-message {
+        color: var(--primary500);
+      }
+    }
+  }
+}
+
+// mnemonic
+
+.mnemonic-wrapper, .claim-wrapper, .balance-wrapper {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media all and (max-width: 720px) {
+    max-width: auto;
+    margin: auto 15px 0;
+  }
+
+  p {
+    width: 100%;
+    margin: 0 0 20px;
+    color: var(--secondary300);
+  }
+
+  .mnemonic {
+    background: var(--subtle-background);
+    padding: 20px 22px 26px;
+    margin-bottom: 20px;
+
+    .wrapper {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      margin-right: 20px;
+      font-size: 16px;
+    }
+
+    span {
+      padding: 15px 25px;
+      margin: 0 20px 20px 0;
+      @include rounded(4px);
+      background: var(--subtle-item);
+      border: 1px solid var(--secondary150);
+    }
+  }
+
+  input {
+    width: calc(100% - 50px);
+    margin-top: 10px;
+  }
+
+  > .btn {
+    text-transform: none;
+  }
+
+  .secondary {
+    margin-right: 20px;
+  }
+
+  .message {
+    padding: 0 35px;
+    margin-bottom: 7px;
+
+    strong {
+      color: var(--primary500);
+      font-size: 18px;
+    }
+  }
+}
+
+.claim-wrapper {
+  max-width: 480px;
+
+  @media all and (max-width: 500px) {
+    min-width: auto;
+    margin: auto 15px 0;
+  }
+
+  .fee {
+    padding: 35px;
+    margin: 20px -35px 0;
+    border-top: 1px solid var(--secondary200);
+  }
+
+  .primary {
+    margin-top: 0;
+  }
+}
+
+// insufficient balance component
+
+.balance-wrapper {
+  max-width: 520px;
+
+  @media all and (max-width: 580px) {
+    min-width: auto;
+    margin: auto 15px 0;
+  }
+
+  .balance {
+
+    .fee {
+      padding: 0 35px 35px;
+      margin: 0 -35px 35px;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid var(--secondary200);
+      strong {
+        margin-left: 3px;
+      }
+    }
+     
+    .buttons-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      .primary, .secondary {
+        margin-top: 5px;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react'
+import { Component, ReactNode } from 'react'
 
 import { UserService } from '../../../services'
 import { LogoutRender } from './renderers'
@@ -13,10 +13,8 @@ export class Logout extends Component<{ history: any }, {}> {
     }
 
     public render (): ReactNode {
-        return (
-            <div className='application'>
-                {LogoutRender(this)}
-            </div>
+        return (    
+            LogoutRender(this)
         )
     }
 

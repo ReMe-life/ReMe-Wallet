@@ -21,7 +21,7 @@ h2 {
 }
 
 .wrapper {
-  margin: 45px auto 0;
+  margin: 45px auto 20px;
   align-items: center;
 }
 
@@ -67,6 +67,7 @@ button {
   outline: none;
   transition: all 0.2s ease-out;
   cursor: pointer;
+
   &.primary {
     @include gradient(var(--primary400), var(--primary500));
     @include box-shadow(0, 6px, 12px, var(--primary-shadow));
@@ -76,5 +77,34 @@ button {
       @include gradient(var(--primary300), var(--primary400));
       @include box-shadow(0, 6px, 16px, var(--primary-shadow));
     }
+  }
+
+  &.secondary {
+    @include gradient(var(--secondary400), var(--secondary500));
+    @include box-shadow(0, 6px, 12px, var(--primary-shadow));
+    color: var(--primary-text);
+    &:hover {
+      background: var(--secondary-hover);
+      @include gradient(var(--secondary300), var(--secondary400));
+      @include box-shadow(0, 6px, 16px, var(--primary-shadow));
+    }
+  }
+
+  &.subtle {
+    background: var(--subtle-color);
+    color: var(--headings-primary);
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: none;
+    margin: 0;
+  }
+
+  &.primary-subtle {
+    background: var(--primary150);
+    color: var(--primary500);
+    padding: 8px 30px;
+    @include rounded(24px);
+    font-size: 18px;
+    text-transform: uppercase;
   }
 }
