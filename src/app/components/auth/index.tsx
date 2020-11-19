@@ -8,6 +8,7 @@ import { withAuth } from '../HOCs'
 type State = {
     email: string
     password: string
+    loading: boolean
 }
 
 class Auth extends Component<{ history: any }, State> {
@@ -22,7 +23,8 @@ class Auth extends Component<{ history: any }, State> {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            loading: false
         }
     }
 
@@ -44,6 +46,8 @@ class Auth extends Component<{ history: any }, State> {
 
     public async auth () {
         try {
+            this.setState({ loading: true })
+
             const email = this.state.email
             const password = this.state.password
 
@@ -62,6 +66,7 @@ class Auth extends Component<{ history: any }, State> {
         catch (error) {
             // Todo: show error
             console.log(error)
+            this.setState({ loading: false })
         }
     }
 
