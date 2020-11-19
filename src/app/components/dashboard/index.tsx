@@ -3,7 +3,7 @@ import React, { Component, ReactNode } from 'react'
 import { DashboardRender } from './renderers'
 
 import { Logout } from '../logout'
-import { withAuth } from '../HOCs'
+import { withoutAuth } from '../HOCs'
 
 import { BalanceService } from '../../../services'
 
@@ -26,7 +26,7 @@ class Dashboard extends Component<{ history: any }, State> {
     async componentDidMount () {
         if (localStorage.getItem('userWallet')) {
             // @ts-ignore
-            const userWallet = JSON.parse(localStorage.getItem('userWallet'))            
+            const userWallet = JSON.parse(localStorage.getItem('userWallet'))
             const ethAmount = await BalanceService.ethAmount(userWallet.address)
             const tokensAmount = await BalanceService.tokensAmount(userWallet.address)
 
@@ -45,4 +45,4 @@ class Dashboard extends Component<{ history: any }, State> {
     }
 }
 
-export default withAuth(Dashboard, '/dashboard')
+export default withoutAuth('/', Dashboard, '/dashboard')
