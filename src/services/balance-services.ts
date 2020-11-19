@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import * as ethers from 'ethers';
 import BLOCKCHAIN_CONFIG from './../config/blockchain-config.json';
 import tokenContractAbi from './../app/assets/abis/IERC20.json'
 
@@ -8,7 +8,7 @@ class BalanceService {
     private provider: any;
     private tokenContract: any;
 
-    private constructor () {
+    private constructor() {
         this.provider = new ethers.providers.InfuraProvider(BLOCKCHAIN_CONFIG.network)
         this.tokenContract = new ethers.Contract(BLOCKCHAIN_CONFIG.tokenAddress, tokenContractAbi.abi, this.provider)
     }
