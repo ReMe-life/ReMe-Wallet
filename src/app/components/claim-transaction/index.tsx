@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react'
 
 import { PasswordConfirmationRender } from './renderers'
 
-import { withoutAuth } from '../HOCs'
+import { withAuth } from '../HOCs'
 
 type State = {}
 
@@ -20,4 +20,4 @@ class ClaimTransaction extends Component<{ history: any }, State> {
     }
 }
 
-export default withoutAuth('/', ClaimTransaction, '/claim')
+export default withAuth('/', ClaimTransaction, '/claim')

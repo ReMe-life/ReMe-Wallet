@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react'
 
 import { InsufficientBalanceRender } from './renderers'
 
-import { withoutAuth } from '../HOCs'
+import { withAuth } from '../HOCs'
 
 type State = {}
 
@@ -20,4 +20,4 @@ class InsufficientBalance extends Component<{ history: any }, State> {
     }
 }
 
-export default withoutAuth('/', InsufficientBalance, '/insufficient-balance')
+export default withAuth('/', InsufficientBalance, '/insufficient-balance')
