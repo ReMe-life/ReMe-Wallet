@@ -1,4 +1,4 @@
-name: Master Branch Frontend Build and Deploy to GCE
+name: Master Branch Frontend Build and Deploy to Firebase
 on:
   push:
     branches: [master]
