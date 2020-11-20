@@ -35,9 +35,11 @@ class Dashboard extends Component<{ history: any }, State> {
     }
 
     render (): ReactNode {
+        // @ts-ignore
+        const email = JSON.parse(localStorage.getItem('userData')).user.email
         return (
             <section className='wrapper homepage'>
-                <Logout history={this.props.history} />
+                <Logout history={this.props.history} email={email} />
                 <h2>Your home page</h2>
                 <div className='common-wrapper'>
                     {DashboardRender(this)}

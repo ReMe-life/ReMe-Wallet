@@ -49,20 +49,20 @@ class Auth extends Component<{ history: any }, State> {
         try {
             this.setState({ loading: true })
 
+            let navigateTo = '/dashboard'
             const email = this.state.email
             const password = this.state.password
 
             let user = await UserService.login(email, password)
             if (!user) {
                 user = await UserService.register(email, password)
-                alert(user.wallet.mnemonic.phrase)
-                // Todo: Show mnemonic
+                navigateTo = '/mnemonic'
             }
 
             localStorage.setItem('userData', JSON.stringify(user.data))
             localStorage.setItem('userWallet', JSON.stringify(user.wallet))
 
-            this.props.history.push('/dashboard')
+            this.props.history.push(navigateTo)
         }
         catch (error) {
             this.setState({ loading: false })
