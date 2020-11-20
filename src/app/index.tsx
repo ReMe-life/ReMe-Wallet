@@ -2,8 +2,7 @@ import './index.scss'
 import React, { Component, ReactNode } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { Title, Auth, Footer } from './components'
-import { Dashboard } from './components';
+import { Title, Auth, Footer, Dashboard, Mnemonic, ClaimTransaction, InsuffitientBalance } from './components'
 
 type State = {
 	component: any
@@ -24,6 +23,9 @@ export class App extends Component<{}, State> {
 				<Router>
 					<Route exact path="/" component={Auth} />
 					<Route exact path='/dashboard' component={Dashboard} />
+					<Route exact path='/mnemonic' component={Mnemonic} />
+					<Route exact path='/claim' component={ClaimTransaction} />
+					<Route exact path='/insufficient-balance' component={InsuffitientBalance} />
 				</Router>
 				<Footer />
 			</div>
