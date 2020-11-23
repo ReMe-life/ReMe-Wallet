@@ -36,11 +36,21 @@ class Dashboard extends Component<{ history: any }, State> {
 
     render (): ReactNode {
         return (
-            <div>
+            <section className='wrapper homepage'>
                 <Logout history={this.props.history} />
-                <h1>Dashboard</h1>
-                {DashboardRender(this)}
-            </div >
+                <h2>Your home page</h2>
+                <div className='common-wrapper'>
+                    {DashboardRender(this)}
+                    {/* <div className='claim'>
+                        <div className='message'>You've got <strong>ReMC !ADD NUMBER!</strong> ready to be claimed.</div>
+                        <button className='btn primary'>Claim now</button>
+                    </div> */}
+
+                    {/* <div className='claim'>
+                        <div className='success-message'>Thank you for claiming your tokens.</div>
+                    </div> */}
+                </div>
+            </section>
         )
     }
 }
