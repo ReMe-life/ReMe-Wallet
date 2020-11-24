@@ -1,10 +1,10 @@
 import { HTTPRequester } from './http-requester'
 
-class ReMeLifeClient {
+export class ReMeCoreClient {
 
-    async login (email: string, password: string) {
+    static async login (email: string, password: string) {
         const result = await HTTPRequester.post(
-            `${process.env.REACT_APP_REME_API}/auth/login`,
+            `${process.env.REACT_APP_REMECORE_API}/auth/login`,
             { password, username: email }
         )
 
@@ -12,5 +12,3 @@ class ReMeLifeClient {
     }
 
 }
-
-export default new ReMeLifeClient();

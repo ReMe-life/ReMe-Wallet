@@ -1,4 +1,4 @@
-import { ReMeLifeClient, FirebaseClient } from '../clients'
+import { ReMePalClient, ReMeCoreClient, FirebaseClient } from '../clients'
 import { WalletService } from './wallet-service'
 
 import { Users } from '../database/repositories';
@@ -6,7 +6,7 @@ import { Users } from '../database/repositories';
 export class UserService {
 
     static async register (email: string, password: string): Promise<any> {
-        await ReMeLifeClient.login(email, password);
+        const token = await ReMeCoreClient.login(email, password);
         const user = await FirebaseClient.register(email, password);
 
         const tokensAmount = 10;
@@ -19,18 +19,19 @@ export class UserService {
             tokens: tokensAmount
         });
 
-        return { data: user, wallet: userWallet }
+        await ReMePalClient.createRRPUser(token, userWallet.address, '');
+        return { data: user, wallet: userWallet, token }
     }
 
     static async login (email: string, password: string): Promise<any> {
-        await ReMeLifeClient.login(email, password);
+        const token = await ReMeCoreClient.login(email, password);
 
         const user = await FirebaseClient.login(email, password);
         if (user) {
             const userData = await Users.getByEmail(email);
             const userWallet = await WalletService.fromEncryptedJson(userData.wallet, password);
 
-            return { data: user, wallet: userWallet }
+            return { data: user, wallet: userWallet, token }
         }
     }
 

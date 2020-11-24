@@ -59,9 +59,8 @@ class Auth extends Component<{ history: any }, State> {
                 navigateTo = '/mnemonic'
             }
 
-            localStorage.setItem('userData', JSON.stringify(user.data))
-            localStorage.setItem('userWallet', JSON.stringify(user.wallet))
 
+            localStorage.setItem('user', JSON.stringify(user))
             this.props.history.push(navigateTo)
         }
         catch (error) {

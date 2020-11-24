@@ -30,7 +30,7 @@ class Mnemonic extends Component<{ history: any }, State> {
             render: 'mnemonic',
             copiedMnemonic: false,
             // @ts-ignore
-            originalMnemonic: JSON.parse(localStorage.getItem('userWallet')).mnemonic.phrase,
+            originalMnemonic: JSON.parse(localStorage.getItem('user')).wallet.mnemonic.phrase,
             confirmedMnemonic: ''
         }
     }
