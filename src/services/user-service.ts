@@ -1,42 +1,32 @@
-import { ReMePalClient, ReMeCoreClient, FirebaseClient } from '../clients'
+import { ReMePalClient } from '../clients'
 import { WalletService } from './wallet-service'
-
-import { Users } from '../database/repositories';
 
 export class UserService {
 
     static async register (email: string, password: string): Promise<any> {
-        const token = await ReMeCoreClient.login(email, password);
-        const user = await FirebaseClient.register(email, password);
+        const wallet = await WalletService.randomWallet(password);
+        const token = await ReMePalClient.register(
+            { email, password },
+            wallet
+        )
 
-        const tokensAmount = 10;
-        const userWallet = await WalletService.randomWallet(password);
+        return { token, mnemonic: wallet.mnemonic }
+    }
 
-        await Users.create({
-            email,
-            ethAddress: userWallet.address,
-            wallet: userWallet.json,
-            tokens: tokensAmount
-        });
-
-        await ReMePalClient.createRRPUser(token, userWallet.address, '');
-        return { data: user, wallet: userWallet, token }
+    static async registerByReferral (userDetails: any, referredBy: string): Promise<any> {
+        const wallet = await WalletService.randomWallet(userDetails.password);
+        // const token = await ReMePalClient.registerByReferral(userDetails, wallet, referredBy)
+        const token = '123'
+        return { token, mnemonic: wallet.mnemonic }
     }
 
     static async login (email: string, password: string): Promise<any> {
-        const token = await ReMeCoreClient.login(email, password);
-
-        const user = await FirebaseClient.login(email, password);
-        if (user) {
-            const userData = await Users.getByEmail(email);
-            const userWallet = await WalletService.fromEncryptedJson(userData.wallet, password);
-
-            return { data: user, wallet: userWallet, token }
-        }
+        return ReMePalClient.login(email, password)
     }
 
-    static async logout (): Promise<void> {
-        return FirebaseClient.logout();
+    static logout (): void {
+        localStorage.clearItem('user')
+        localStorage.clearItem('token')
     }
 
 }

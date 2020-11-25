@@ -29,17 +29,20 @@ class Dashboard extends Component<{ history: any }, State> {
     }
 
     async componentDidMount () {
-        if (localStorage.getItem('user')) {
-            // @ts-ignore
-            const user = JSON.parse(localStorage.getItem('user'))
-            const ethAmount = await BalanceService.ethAmount(user.wallet.address)
-            const tokensAmount = await BalanceService.tokensAmount(user.wallet.address)
+        // const user = JSON.parse(localStorage.getItem('user'))
 
-            const referralLink = await ReMePalClient.getReferralLink(user.token, user.wallet.address)
-            const referralAmount = await ReMePalClient.getReferralAmount(user.token, user.wallet.address)
+        // @ts-ignore
+        const token = localStorage.getItem('token')
+        // @ts-ignore
+        const user = await ReMePalClient.getUserDetails(token)
 
-            this.setState({ ethAmount, tokensAmount, referralLink, referralAmount })
-        }
+        const ethAmount = await BalanceService.ethAmount(user.wallet.address)
+        const tokensAmount = await BalanceService.tokensAmount(user.wallet.address)
+
+        const referralLink = await ReMePalClient.getReferralLink(user.token, user.wallet.address)
+        const referralAmount = await ReMePalClient.getReferralAmount(user.token, user.wallet.address)
+
+        this.setState({ ethAmount, tokensAmount, referralLink, referralAmount })
     }
 
     render (): ReactNode {

@@ -1,18 +1,20 @@
 import { Title } from './title/title'
 import { Footer } from './footer/footer'
 
-import Auth from './auth'
-import Dashboard from './dashboard'
+import Login from './login'
 import Mnemonic from './mnemonic'
+import Dashboard from './dashboard'
+import Registration from './registration'
 import ClaimTransaction from './claim-transaction'
 import InsuffitientBalance from './insufficient-balance'
 
 export {
-    Auth,
+    Login,
     Title,
     Footer,
-    Dashboard,
     Mnemonic,
+    Dashboard,
+    Registration,
     ClaimTransaction,
     InsuffitientBalance
 }

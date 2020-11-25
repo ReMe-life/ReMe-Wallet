@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react'
 
-import { AuthRender } from './renderers'
+import { LoginRender } from './renderers'
 import { ErrorPopUp } from '../../errors'
 import { UserService } from '../../../services'
 
@@ -12,12 +12,12 @@ type State = {
     loading: boolean
 }
 
-class Auth extends Component<{ history: any }, State> {
+class Login extends Component<{ history: any }, State> {
 
     public constructor (props: any) {
         super(props)
 
-        this.auth = this.auth.bind(this)
+        this.login = this.login.bind(this)
         this.onEmail = this.onEmail.bind(this)
         this.onPassword = this.onPassword.bind(this)
 
@@ -32,7 +32,7 @@ class Auth extends Component<{ history: any }, State> {
     public render (): ReactNode {
         return (
             <div className='application'>
-                { AuthRender(this)}
+                { LoginRender(this)}
             </div>
         )
     }
@@ -45,23 +45,22 @@ class Auth extends Component<{ history: any }, State> {
         this.setState({ password: event.target.value })
     }
 
-    public async auth () {
+    public async login () {
         try {
             this.setState({ loading: true })
 
-            let navigateTo = '/dashboard'
-            const email = this.state.email
-            const password = this.state.password
-
-            let user = await UserService.login(email, password)
-            if (!user) {
-                user = await UserService.register(email, password)
-                navigateTo = '/mnemonic'
+            const token = await UserService.login(this.state.email, this.state.password)
+            if (token) {
+                localStorage.setItem('token', JSON.stringify(token))
+                return this.props.history.push('/dashboard')
             }
 
-
-            localStorage.setItem('user', JSON.stringify(user))
-            this.props.history.push(navigateTo)
+            const result = await UserService.register(this.state.email, this.state.password)
+            localStorage.setItem('token', JSON.stringify(result.token))
+            this.props.history.push({
+                pathname: '/mnemonic',
+                state: { mnemonic: result.mnemonic }
+            })
         }
         catch (error) {
             this.setState({ loading: false })
@@ -73,4 +72,4 @@ class Auth extends Component<{ history: any }, State> {
 
 }
 
-export default withAuth('/dashboard', Auth, '/')
+export default withAuth('/dashboard', Login, '/')
