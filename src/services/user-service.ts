@@ -15,18 +15,12 @@ export class UserService {
 
     static async registerByReferral (userDetails: any, referredBy: string): Promise<any> {
         const wallet = await WalletService.randomWallet(userDetails.password);
-        // const token = await ReMePalClient.registerByReferral(userDetails, wallet, referredBy)
-        const token = '123'
+        const token = await ReMePalClient.registerByReferral(userDetails, wallet, referredBy)
+
         return { token, mnemonic: wallet.mnemonic }
     }
 
     static async login (email: string, password: string): Promise<any> {
         return ReMePalClient.login(email, password)
     }
-
-    static logout (): void {
-        localStorage.clearItem('user')
-        localStorage.clearItem('token')
-    }
-
 }

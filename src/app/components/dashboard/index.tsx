@@ -12,7 +12,7 @@ type State = {
     ethAmount: string
     tokensAmount: string
     referralLink: string
-    referralAmount: string
+    earnedTokens: any
 }
 
 class Dashboard extends Component<{ history: any }, State> {
@@ -23,38 +23,37 @@ class Dashboard extends Component<{ history: any }, State> {
         this.state = {
             ethAmount: '0',
             tokensAmount: '0',
-            referralLink: '0',
-            referralAmount: '0'
+            referralLink: '',
+            earnedTokens: {}
         }
     }
 
     async componentDidMount () {
-        // const user = JSON.parse(localStorage.getItem('user'))
-
         // @ts-ignore
         const token = localStorage.getItem('token')
         // @ts-ignore
         const user = await ReMePalClient.getUserDetails(token)
+        localStorage.setItem('user', JSON.stringify(user))
 
         const ethAmount = await BalanceService.ethAmount(user.wallet.address)
         const tokensAmount = await BalanceService.tokensAmount(user.wallet.address)
 
-        const referralLink = await ReMePalClient.getReferralLink(user.token, user.wallet.address)
-        const referralAmount = await ReMePalClient.getReferralAmount(user.token, user.wallet.address)
-
-        this.setState({ ethAmount, tokensAmount, referralLink, referralAmount })
+        this.setState({
+            ethAmount,
+            tokensAmount,
+            referralLink: user.referralLink,
+            earnedTokens: user.earnedTokens
+        })
     }
 
     render (): ReactNode {
         // @ts-ignore
-        const email = JSON.parse(localStorage.getItem('user')).data.user.email
+        // const email = JSON.parse(localStorage.getItem('user')).email
+
         return (
             <section className='wrapper homepage'>
-                <Logout history={this.props.history} email={email} />
+                <Logout history={this.props.history} email={'email'} />
                 <h2>Your home page</h2>
-                <h2>Referral Link: {this.state.referralLink}</h2>
-                <h2>Referral Amount: {this.state.referralAmount}</h2>
-
                 <div className='common-wrapper'>
                     {DashboardRender(this)}
                     {/* <div className='claim'>
