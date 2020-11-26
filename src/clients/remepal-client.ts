@@ -16,7 +16,7 @@ export class ReMePalClient {
 
     static async registerByReferral (details: any, wallet: any, referredBy: string): Promise<any> {
         const result = await HTTPRequester.post(
-            `${process.env.REACT_APP_REMEPAL_API}/auth/register`,
+            `${process.env.REACT_APP_REMEPAL_API}/auth/register/referral`,
             {
                 ...details,
                 wallet,

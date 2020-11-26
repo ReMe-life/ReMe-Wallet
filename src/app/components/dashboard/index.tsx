@@ -9,6 +9,7 @@ import { ReMePalClient } from '../../../clients'
 import { BalanceService } from '../../../services'
 
 type State = {
+    email: string
     ethAmount: string
     tokensAmount: string
     referralLink: string
@@ -21,6 +22,7 @@ class Dashboard extends Component<{ history: any }, State> {
         super(props)
 
         this.state = {
+            email: '',
             ethAmount: '0',
             tokensAmount: '0',
             referralLink: '',
@@ -39,6 +41,7 @@ class Dashboard extends Component<{ history: any }, State> {
         const tokensAmount = await BalanceService.tokensAmount(user.wallet.address)
 
         this.setState({
+            email: user.email,
             ethAmount,
             tokensAmount,
             referralLink: user.referralLink,
@@ -47,12 +50,9 @@ class Dashboard extends Component<{ history: any }, State> {
     }
 
     render (): ReactNode {
-        // @ts-ignore
-        // const email = JSON.parse(localStorage.getItem('user')).email
-
         return (
             <section className='wrapper homepage'>
-                <Logout history={this.props.history} email={'email'} />
+                <Logout history={this.props.history} email={this.state.email} />
                 <h2>Your home page</h2>
                 <div className='common-wrapper'>
                     {DashboardRender(this)}

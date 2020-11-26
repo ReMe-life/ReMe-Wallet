@@ -6,7 +6,7 @@ export const DashboardRender = function (context: any) {
             <p> Referral Link: {context.state.referralLink}</p>
             <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensAmount}</strong></p>
             <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethAmount}</strong></p>
-            <h2>Earnings</h2>
+            <p> Earnings&nbsp;&nbsp;&nbsp;</p>
             <div>
                 <p>SignUp {context.state.earnedTokens.signup}</p>
                 <p>Referral {context.state.earnedTokens.referral}</p>

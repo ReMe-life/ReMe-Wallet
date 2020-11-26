@@ -51,12 +51,12 @@ class Login extends Component<{ history: any }, State> {
 
             const token = await UserService.login(this.state.email, this.state.password)
             if (token) {
-                localStorage.setItem('token', JSON.stringify(token))
+                localStorage.setItem('token', token)
                 return this.props.history.push('/dashboard')
             }
 
             const result = await UserService.register(this.state.email, this.state.password)
-            localStorage.setItem('token', JSON.stringify(result.token))
+            localStorage.setItem('token', result.token)
             this.props.history.push({
                 pathname: '/mnemonic',
                 state: { mnemonic: result.mnemonic }

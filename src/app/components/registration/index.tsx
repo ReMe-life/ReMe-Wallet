@@ -70,7 +70,7 @@ class Registration extends Component<{ history: any, match: any }, State> {
             }
 
             const result = await UserService.registerByReferral(user, this.props.match.params.referredBy)
-            localStorage.setItem('token', JSON.stringify(result.token))
+            localStorage.setItem('token', result.token)
             this.props.history.push({
                 pathname: '/mnemonic',
                 state: { mnemonic: result.mnemonic }
