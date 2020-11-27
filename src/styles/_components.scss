@@ -108,6 +108,17 @@ footer {
             background: var(--footer-btn-hover);
         }
     }
+
+    .terms {
+      text-decoration: none;
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      color: var(--primary200);
+      img {
+        margin-right: 9px;
+      }
+    }
 }
 
 // Error PopUp
@@ -139,9 +150,48 @@ footer {
 // Home page
 
 .homepage {
-  max-width: 480px;
+  min-width: 700px;
 
-  @media all and (max-width: 500px) {
+  .referral-titles {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+    dt {
+      color: var(--secondary250);
+    }
+    dd a {
+      color: var(--primary500);
+      font-weight: 700;
+      text-decoration: none;
+    }
+  }
+
+  .input-wrapper {
+      position: relative;
+      img {
+          cursor: pointer;
+          position: absolute;
+          right: 20px;
+          top: 20px;
+      }
+  }
+
+  .home-wrapper {
+    width: 100%;
+    .tokens-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    input {
+      width: calc(100% - 46px);
+    }
+  }
+
+  @media all and (max-width: 720px) {
     max-width: auto;
     margin: auto 15px 0;
   }
@@ -150,7 +200,7 @@ footer {
     @include rounded(5px);
     background: var(--primary100);
     color: var(--primary500);
-    margin: 0 0 14px;
+    margin: 0 14px 0 0;
 
     &:last-of-type {
       background: var(--secondary100);
@@ -305,6 +355,23 @@ footer {
       .primary, .secondary {
         margin-top: 5px;
       }
+    }
+  }
+}
+
+// registration 
+
+.register {
+  p {
+    padding-left: 23px;
+    font-size: 16px;
+    color: var(--paragraphs);
+    max-width: 260px;
+    margin: 5px 0;
+    a { 
+      color: var(--primary500);
+      font-weight: 700;
+      text-decoration: none;
     }
   }
 }

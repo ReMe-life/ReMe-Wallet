@@ -30,11 +30,7 @@ class Login extends Component<{ history: any }, State> {
     }
 
     public render (): ReactNode {
-        return (
-            <div className='application'>
-                { LoginRender(this)}
-            </div>
-        )
+        return LoginRender(this)
     }
 
     public onEmail (event: any) {

@@ -3,8 +3,8 @@ import PasswordToggle from '../../../assets/svg/show-password.svg'
 
 export const RegistrationRender = function (context: any) {
     return (
-        <section className='wrapper login'>
-            <h2>Your account</h2>
+        <section className='wrapper register login'>
+            <h2>Register your account</h2>
             <div className='common-wrapper'>
                 <form className='form-inline center'>
                     <input size={30} placeholder='First Name' type='text' className='form-control input' onChange={context.onFirstName} />
@@ -14,6 +14,7 @@ export const RegistrationRender = function (context: any) {
                         <input size={30} placeholder='Password' type='password' className='form-control input' onChange={context.onPassword} />
                         <img src={PasswordToggle} alt='Show/hide password' />
                     </div>
+                    <p>By registering you agree with the <a href='#'>Terms of Service/Conditions</a></p>
                     <button type='button' className='btn primary' disabled={context.state.loading} onClick={context.register}> {context.state.loading ? <div className='loader'></div> : 'Sign in'}</button>
                 </form>
             </div>

@@ -1,16 +1,21 @@
 import React from 'react'
+import CopyIcon from '../../../assets/svg/copy.svg'
 
 export const DashboardRender = function (context: any) {
     return (
-        <div className='tokens-wrapper'>
-            <p> Referral Link: {context.state.referralLink}</p>
-            <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensAmount}</strong></p>
-            <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethAmount}</strong></p>
-            <p> Earnings&nbsp;&nbsp;&nbsp;</p>
-            <div>
-                <p>SignUp {context.state.earnedTokens.signup}</p>
-                <p>Referral {context.state.earnedTokens.referral}</p>
+        <section className='home-wrapper'>
+            <div className='tokens-wrapper'>
+                <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensAmount}</strong></p>
+                <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethAmount}</strong></p>
             </div>
-        </div>
+            <dl className='referral-titles'>
+                <dt>Referral link</dt>
+                <dd><a href='#'>ReMe Referal Platform</a></dd>
+            </dl>
+            <div className='input-wrapper'>
+                <input type='text' value={context.state.referralLink} />
+                <img src={CopyIcon} alt='Show/hide password' />
+            </div>
+        </section>
     )
 }

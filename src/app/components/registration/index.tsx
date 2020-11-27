@@ -35,11 +35,7 @@ class Registration extends Component<{ history: any, match: any }, State> {
     }
 
     public render (): ReactNode {
-        return (
-            <div className='application'>
-                { RegistrationRender(this)}
-            </div>
-        )
+        return RegistrationRender(this)
     }
 
     public onEmail (event: any) {
