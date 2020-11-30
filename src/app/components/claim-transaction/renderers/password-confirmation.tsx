@@ -6,12 +6,9 @@ export const PasswordConfirmationRender = function (context: any) {
             <p className='message'>To claim the <strong>ReMC {context.state.tokensForClaiming}</strong>, we need you to enter your password. </p>
             <input size={30} placeholder='Password' type='password' onChange={context.onPassword} className='form-control input' />
             <p className='fee'>Transaction Fee&nbsp;&nbsp;<strong>ETH {context.state.txFee}</strong></p>
-            {context.state.txFee === '0' ?
-                null :
-                <div className='buttons-wrapper'>
-                    <button className='btn primary' onClick={context.confirmTransaction}>Confirm</button>
-                </div>
-            }
+            <div className='buttons-wrapper'>
+                <button className='btn primary' onClick={context.confirmTransaction}>Confirm</button>
+            </div>
 
         </div>
     )

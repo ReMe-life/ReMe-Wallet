@@ -1,8 +1,7 @@
 import React, { Component, ReactNode } from 'react'
 
+import { requireStateOrRedirectTo } from '../HOCs'
 import { InsufficientBalanceRender } from './renderers'
-
-import { withAuth, withoutAuth } from '../HOCs'
 
 type State = {
     txFee: string,
@@ -43,4 +42,9 @@ class InsufficientBalance extends Component<{ history: any }, State> {
     }
 }
 
-export default withoutAuth('/', InsufficientBalance, '/insufficient-balance')
+export default requireStateOrRedirectTo(
+    ['txFee', 'address'],
+    InsufficientBalance,
+    'insufficient-balance',
+    '/dashboard'
+)

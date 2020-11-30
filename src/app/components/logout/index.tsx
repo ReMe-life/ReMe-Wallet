@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react'
 
-import { UserService } from '../../../services'
 import { LogoutRender } from './renderers'
+import { clearLocalStorage } from '../helpers'
 
 export class Logout extends Component<{ history: any, email: string }, {}> {
 
@@ -18,10 +18,7 @@ export class Logout extends Component<{ history: any, email: string }, {}> {
     }
 
     public async logout () {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-
-        this.props.history.push('/');
+        clearLocalStorage(this.props.history)
     }
 
 }

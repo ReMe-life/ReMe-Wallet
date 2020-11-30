@@ -1,9 +1,10 @@
 import React, { Component, ReactNode } from 'react'
 
+import { Logout } from '../logout'
 import { DashboardRender } from './renderers'
 
-import { Logout } from '../logout'
 import { withoutAuth } from '../HOCs'
+import { clearLocalStorage } from '../helpers'
 
 import { ReMePalClient } from '../../../clients'
 import { BalanceService } from '../../../services'
@@ -37,24 +38,29 @@ class Dashboard extends Component<{ history: any }, State> {
     }
 
     public async componentDidMount () {
-        // @ts-ignore
-        const token = localStorage.getItem('token')
-        // @ts-ignore
-        const user = await ReMePalClient.getUserDetails(token)
-        localStorage.setItem('user', JSON.stringify(user))
+        try {
+            // @ts-ignore
+            const token = localStorage.getItem('token')
+            // @ts-ignore
+            const user = await ReMePalClient.getUserDetails(token)
+            localStorage.setItem('user', JSON.stringify(user))
 
-        const ethBalance = await BalanceService.ethAmount(user.wallet.address)
-        const tokensBalance = await BalanceService.tokensAmount(user.wallet.address)
+            const ethBalance = await BalanceService.ethAmount(user.wallet.address)
+            const tokensBalance = await BalanceService.tokensAmount(user.wallet.address)
 
-        this.setState({
-            email: user.email,
-            ethBalance,
-            tokensBalance,
-            referralLink: user.referralLink,
-            earnedTokens: user.earnedTokens,
-            incomingTokens: user.incomingTokens,
-            tokensForClaiming: user.tokensForClaiming
-        })
+            this.setState({
+                email: user.email,
+                ethBalance,
+                tokensBalance,
+                referralLink: user.referralLink,
+                earnedTokens: user.earnedTokens,
+                incomingTokens: user.incomingTokens,
+                tokensForClaiming: user.tokensForClaiming
+            })
+        } catch (error) {
+            console.log(error)
+            clearLocalStorage(this.props.history)
+        }
     }
 
     public render (): ReactNode {

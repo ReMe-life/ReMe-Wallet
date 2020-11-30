@@ -1,17 +1,17 @@
-import { providers, Contract, Wallet } from 'ethers'
 import React, { Component, ReactNode } from 'react'
 
 import { PasswordConfirmationRender } from './renderers'
 
-import { withAuth, withoutAuth } from '../HOCs'
+import { requireStateOrRedirectTo } from '../HOCs'
 import { ErrorPopUp } from '../../errors'
 import { ReMePalClient } from '../../../clients'
+import { ClaimService } from '../../../services'
+
 
 type State = {
     txFee: string
     password: string
-    contract: any
-    claimData: any
+    claimService: any
     ethBalance: string
 }
 
@@ -20,43 +20,46 @@ class ClaimTransaction extends Component<{ history: any }, State> {
     public constructor (props: any) {
         super(props)
 
+        if (this.props.history.location.state === undefined ||
+            this.props.history.location.state.ethBalance === undefined) {
+            return this.props.history.push('/dashboard')
+        }
+
+        this.onPassword = this.onPassword.bind(this)
+        this.confirmTransaction = this.confirmTransaction.bind(this)
+
         this.state = {
             txFee: '0',
             password: '',
-            contract: {},
-            claimData: {},
+            claimService: {},
             ethBalance: this.props.history.location.state.ethBalance
         }
     }
 
     public async componentDidMount () {
-        const provider = new providers.JsonRpcProvider(process.env.RECT_APP_BLOCKCHAIN_NETWORK)
-        // @ts-ignore
-        const contract = new Contract(process.env.RECT_APP_DISTRIBUTION_CONTRACT, JSON.stringify('abi'), provider)
-
         // @ts-ignore
         const token = localStorage.getItem('token')
         // @ts-ignore
         const claimData = await ReMePalClient.getClaimData(token)
-
         // @ts-ignore
         const user = JSON.parse(localStorage.getItem('user'))
-        const txFee = await contract.estimateGas.claim(claimData.distributionIndex, claimData.proof, user.tokensForClaiming)
+
+        const claimService = new ClaimService(claimData, user.tokensForClaiming, user.wallet)
+        const txFee = await claimService.claimFee()
 
         if (txFee.gt(this.state.ethBalance)) {
             return this.props.history.push({
                 pathname: '/insufficient-balance',
                 state: {
                     txFee: txFee.toString(),
-                    // @ts-ignore
-                    address: JSON.parse(localStorage.getItem('user')).wallet.address
+                    address: user.wallet.address
                 }
             })
         }
 
         this.setState({
-            contract,
-            claimData,
+            txFee,
+            claimService
         })
     }
 
@@ -77,15 +80,7 @@ class ClaimTransaction extends Component<{ history: any }, State> {
 
     public async confirmTransaction () {
         try {
-            // @ts-ignore
-            const user = JSON.parse(localStorage.getItem('user'))
-            // @ts-ignore
-            this.state.contract.connect(Wallet.fromEncryptedJson(user.wallet.json, this.state.password))
-            this.state.contract.claim(
-                this.state.claimData.distributionIndex,
-                this.state.claimData.proof,
-                user.tokensForClaiming
-            )
+            await this.state.claimService.claim(this.state.password)
 
             this.props.history.push({
                 pathname: '/dashboard',
@@ -94,10 +89,13 @@ class ClaimTransaction extends Component<{ history: any }, State> {
                 }
             })
         } catch (error) {
-            console.log(error)
-            ErrorPopUp.show('Incorrect password')
+            if (error.message.includes('Invalid Wallet')) {
+                return ErrorPopUp.show('Incorrect password')
+            }
+
+            ErrorPopUp.show('Claim failed!')
         }
     }
 }
 
-export default withoutAuth('/', ClaimTransaction, '/claim')
+export default requireStateOrRedirectTo(['ethBalance'], ClaimTransaction, '/claim', '/dashboard')
