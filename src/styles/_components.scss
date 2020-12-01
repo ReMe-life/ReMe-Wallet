@@ -82,6 +82,9 @@ footer {
     flex-direction: row;
     margin: auto auto 45px;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
     
     img {
         margin-right: 11px;
@@ -110,11 +113,13 @@ footer {
     }
 
     .terms {
+      display: flex;
       text-decoration: none;
       position: absolute;
-      bottom: 50px;
+      bottom: 20px;
       right: 50px;
       color: var(--primary200);
+
       img {
         margin-right: 9px;
       }
