@@ -73,7 +73,7 @@ class Dashboard extends Component<{ history: any }, State> {
                 <h2>Your home page</h2>
                 <div className='common-wrapper'>
                     {DashboardRender(this)}
-                    {this.state.tokensForClaiming == '0' ?
+                    {this.state.tokensForClaiming === '0' ?
                         null :
                         <div className='claim'>
                             <div className='message'>You've got <strong>ReMC {this.state.tokensForClaiming}</strong> ready to be claimed.</div>
