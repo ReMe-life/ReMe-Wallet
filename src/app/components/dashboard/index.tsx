@@ -11,6 +11,7 @@ import { BalanceService } from '../../../services'
 
 type State = {
     email: string
+    address: string
     ethBalance: string
     tokensBalance: string
     referralLink: string
@@ -28,6 +29,7 @@ class Dashboard extends Component<{ history: any }, State> {
 
         this.state = {
             email: '',
+            address: '',
             ethBalance: '0',
             tokensBalance: '0',
             referralLink: '',
@@ -50,6 +52,7 @@ class Dashboard extends Component<{ history: any }, State> {
 
             this.setState({
                 email: user.email,
+                address: user.wallet.address,
                 ethBalance,
                 tokensBalance,
                 referralLink: user.referralLink,

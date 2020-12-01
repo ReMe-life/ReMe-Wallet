@@ -1,14 +1,14 @@
 name: Master Branch Frontend Build and Deploy to Firebase
 on:
   push:
-    branches: [master]
+    branches: [staging]
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [10.x]
-        projectId: [reme-frend]
+        projectId: [reme-wallet-test]
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}

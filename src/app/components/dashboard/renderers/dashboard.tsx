@@ -5,7 +5,7 @@ export const DashboardRender = function (context: any) {
     return (
         <section className='home-wrapper'>
             <div className='address-wrapper'>
-                <p>Your address &nbsp;&nbsp;&nbsp;<strong>0x33ADef7EED6143Ba1341005FdA214a3Dd0136e08</strong></p>
+                <p>Your address &nbsp;&nbsp;&nbsp;<strong>{context.state.address}</strong></p>
             </div>
             <div className='tokens-wrapper'>
                 <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></p>
