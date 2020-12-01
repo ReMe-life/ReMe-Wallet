@@ -185,6 +185,11 @@ footer {
 
   .home-wrapper {
     width: 100%;
+
+    .address-wrapper {
+      margin-bottom: 20px;
+    }
+
     .tokens-wrapper {
       display: flex;
       flex-direction: row;

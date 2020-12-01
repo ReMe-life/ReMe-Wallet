@@ -4,6 +4,9 @@ import CopyIcon from '../../../assets/svg/copy.svg'
 export const DashboardRender = function (context: any) {
     return (
         <section className='home-wrapper'>
+            <div className='address-wrapper'>
+                <p>Your address &nbsp;&nbsp;&nbsp;<strong>0x33ADef7EED6143Ba1341005FdA214a3Dd0136e08</strong></p>
+            </div>
             <div className='tokens-wrapper'>
                 <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></p>
                 <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethBalance}</strong></p>
