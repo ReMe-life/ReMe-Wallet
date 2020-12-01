@@ -1,7 +1,5 @@
-import ReMeLifeClient from './remelife-client';
-import FirebaseClient from './firebase-client'
+import { ReMePalClient } from './remepal-client'
 
 export {
-    ReMeLifeClient,
-    FirebaseClient
+    ReMePalClient
 }

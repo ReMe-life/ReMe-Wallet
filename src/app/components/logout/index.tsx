@@ -18,10 +18,8 @@ export class Logout extends Component<{ history: any, email: string }, {}> {
     }
 
     public async logout () {
-        await UserService.logout();
-
-        localStorage.removeItem('userData');
-        localStorage.removeItem('userWallet');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
 
         this.props.history.push('/');
     }

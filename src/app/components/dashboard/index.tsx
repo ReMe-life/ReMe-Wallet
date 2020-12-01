@@ -5,11 +5,15 @@ import { DashboardRender } from './renderers'
 import { Logout } from '../logout'
 import { withoutAuth } from '../HOCs'
 
+import { ReMePalClient } from '../../../clients'
 import { BalanceService } from '../../../services'
 
 type State = {
-    ethAmount: string;
-    tokensAmount: string;
+    email: string
+    ethAmount: string
+    tokensAmount: string
+    referralLink: string
+    earnedTokens: any
 }
 
 class Dashboard extends Component<{ history: any }, State> {
@@ -18,28 +22,37 @@ class Dashboard extends Component<{ history: any }, State> {
         super(props)
 
         this.state = {
+            email: '',
             ethAmount: '0',
-            tokensAmount: '0'
+            tokensAmount: '0',
+            referralLink: '',
+            earnedTokens: {}
         }
     }
 
     async componentDidMount () {
-        if (localStorage.getItem('userWallet')) {
-            // @ts-ignore
-            const userWallet = JSON.parse(localStorage.getItem('userWallet'))
-            const ethAmount = await BalanceService.ethAmount(userWallet.address)
-            const tokensAmount = await BalanceService.tokensAmount(userWallet.address)
+        // @ts-ignore
+        const token = localStorage.getItem('token')
+        // @ts-ignore
+        const user = await ReMePalClient.getUserDetails(token)
+        localStorage.setItem('user', JSON.stringify(user))
 
-            this.setState({ ethAmount, tokensAmount })
-        }
+        const ethAmount = await BalanceService.ethAmount(user.wallet.address)
+        const tokensAmount = await BalanceService.tokensAmount(user.wallet.address)
+
+        this.setState({
+            email: user.email,
+            ethAmount,
+            tokensAmount,
+            referralLink: user.referralLink,
+            earnedTokens: user.earnedTokens
+        })
     }
 
     render (): ReactNode {
-        // @ts-ignore
-        const email = JSON.parse(localStorage.getItem('userData')).user.email
         return (
             <section className='wrapper homepage'>
-                <Logout history={this.props.history} email={email} />
+                <Logout history={this.props.history} email={this.state.email} />
                 <h2>Your home page</h2>
                 <div className='common-wrapper'>
                     {DashboardRender(this)}

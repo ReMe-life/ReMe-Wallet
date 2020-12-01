@@ -34,6 +34,6 @@ export const withoutAuth = (authUrl: string, Component: any, componentUrl: strin
 }
 
 const hasBeenAuthenticated = () => {
-    return !!localStorage.getItem('userData')
+    return !!localStorage.getItem('token')
 }
 
