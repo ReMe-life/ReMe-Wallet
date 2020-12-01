@@ -44,4 +44,13 @@ export class ReMePalClient {
 
         return result
     }
+
+    static async getClaimData (token: string): Promise<any> {
+        const result = await HTTPRequester.get(
+            `${process.env.REACT_APP_REMEPAL_API}/distribution`,
+            { Authorization: `Bearer ${token}` }
+        )
+
+        return result
+    }
 }
