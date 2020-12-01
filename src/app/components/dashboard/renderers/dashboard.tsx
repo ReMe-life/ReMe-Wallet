@@ -13,7 +13,7 @@ export const DashboardRender = function (context: any) {
             </div>
             <dl className='referral-titles'>
                 <dt>Referral Code</dt>
-                <dd><a href='#'>ReMe Referal Platform</a></dd>
+                <dd><a href='/dashboard'>ReMe Referal Platform</a></dd>
             </dl>
             <div className='input-wrapper'>
                 <input type='text' value={context.state.referralLink} />
