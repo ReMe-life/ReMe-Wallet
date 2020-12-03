@@ -1,3 +1,4 @@
+import copy from 'copy-to-clipboard';
 import React, { Component, ReactNode } from 'react'
 
 import { Logout } from '../logout'
@@ -11,12 +12,14 @@ import { BalanceService } from '../../../services'
 
 type State = {
     email: string
+    address: string
     ethBalance: string
     tokensBalance: string
     referralLink: string
     earnedTokens: any
     incomingTokens: string
     tokensForClaiming: string
+    copiedCode: boolean
 }
 
 class Dashboard extends Component<{ history: any }, State> {
@@ -25,15 +28,18 @@ class Dashboard extends Component<{ history: any }, State> {
         super(props)
 
         this.claim = this.claim.bind(this)
+        this.copyReferralCode = this.copyReferralCode.bind(this)
 
         this.state = {
             email: '',
+            address: '',
             ethBalance: '0',
             tokensBalance: '0',
             referralLink: '',
             earnedTokens: {},
             incomingTokens: '0',
-            tokensForClaiming: '0'
+            tokensForClaiming: '0',
+            copiedCode: false
         }
     }
 
@@ -50,9 +56,10 @@ class Dashboard extends Component<{ history: any }, State> {
 
             this.setState({
                 email: user.email,
+                address: user.wallet.address,
                 ethBalance,
                 tokensBalance,
-                referralLink: user.referralLink,
+                referralLink: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
                 earnedTokens: user.earnedTokens,
                 incomingTokens: user.incomingTokens,
                 tokensForClaiming: user.tokensForClaiming
@@ -70,7 +77,7 @@ class Dashboard extends Component<{ history: any }, State> {
                 <h2>Your home page</h2>
                 <div className='common-wrapper'>
                     {DashboardRender(this)}
-                    {this.state.tokensForClaiming == '0' ?
+                    {this.state.tokensForClaiming === '0' ?
                         null :
                         <div className='claim'>
                             <div className='message'>You've got <strong>ReMC {this.state.tokensForClaiming}</strong> ready to be claimed.</div>
@@ -99,6 +106,11 @@ class Dashboard extends Component<{ history: any }, State> {
                 ethBalance: this.state.ethBalance
             }
         })
+    }
+
+    public copyReferralCode () {
+        copy(this.state.referralLink)
+        this.setState({ copiedCode: true })
     }
 }
 

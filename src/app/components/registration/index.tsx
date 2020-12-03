@@ -1,10 +1,8 @@
-import React, { Component, ReactNode } from 'react'
+import { Component, ReactNode } from 'react'
 
 import { RegistrationRender } from './renderers'
 import { ErrorPopUp } from '../../errors'
 import { UserService } from '../../../services'
-
-import { withAuth } from '../HOCs'
 
 type State = {
     email: string

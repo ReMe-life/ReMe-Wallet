@@ -1,11 +1,12 @@
 import React from 'react'
 import CopyIcon from '../../../assets/svg/copy.svg'
+import CopiedIcon from '../../../assets/svg/copied.svg'
 
 export const DashboardRender = function (context: any) {
     return (
         <section className='home-wrapper'>
             <div className='address-wrapper'>
-                <p>Your address &nbsp;&nbsp;&nbsp;<strong>0x33ADef7EED6143Ba1341005FdA214a3Dd0136e08</strong></p>
+                <p>Your address &nbsp;&nbsp;&nbsp;<strong>{context.state.address}</strong></p>
             </div>
             <div className='tokens-wrapper'>
                 <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></p>
@@ -13,11 +14,14 @@ export const DashboardRender = function (context: any) {
             </div>
             <dl className='referral-titles'>
                 <dt>Referral Code</dt>
-                <dd><a href='#'>ReMe Referal Platform</a></dd>
+                <dd><a href='/dashboard'>ReMe Referal Platform</a></dd>
             </dl>
             <div className='input-wrapper'>
                 <input type='text' value={context.state.referralLink} />
-                <img src={CopyIcon} alt='Show/hide password' />
+                {context.state.copiedCode ?
+                    <img src={CopiedIcon} alt='Show/hide' /> :
+                    <img src={CopyIcon} alt='Show/hide' onClick={context.copyReferralCode} />
+                }
             </div>
         </section>
     )

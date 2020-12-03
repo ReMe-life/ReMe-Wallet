@@ -14,7 +14,7 @@ export const RegistrationRender = function (context: any) {
                         <input size={30} placeholder='Password' type='password' className='form-control input' onChange={context.onPassword} />
                         <img src={PasswordToggle} alt='Show/hide password' />
                     </div>
-                    <p>By registering you agree with the <a href='#'>Terms of Service/Conditions</a></p>
+                    <p>By registering you agree with the <a href='/registration'>Terms of Service/Conditions</a></p>
                     <button type='button' className='btn primary' disabled={context.state.loading} onClick={context.register}> {context.state.loading ? <div className='loader'></div> : 'Sign in'}</button>
                 </form>
             </div>
