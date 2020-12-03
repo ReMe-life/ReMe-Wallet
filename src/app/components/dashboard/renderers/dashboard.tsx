@@ -1,5 +1,6 @@
 import React from 'react'
 import CopyIcon from '../../../assets/svg/copy.svg'
+import CopiedIcon from '../../../assets/svg/copied.svg'
 
 export const DashboardRender = function (context: any) {
     return (
@@ -17,7 +18,10 @@ export const DashboardRender = function (context: any) {
             </dl>
             <div className='input-wrapper'>
                 <input type='text' value={context.state.referralLink} />
-                <img src={CopyIcon} alt='Show/hide password' />
+                {context.state.copiedCode ?
+                    <img src={CopiedIcon} alt='Show/hide' /> :
+                    <img src={CopyIcon} alt='Show/hide' onClick={context.copyReferralCode} />
+                }
             </div>
         </section>
     )

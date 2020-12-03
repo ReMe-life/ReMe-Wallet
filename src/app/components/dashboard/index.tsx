@@ -1,3 +1,4 @@
+import copy from 'copy-to-clipboard';
 import React, { Component, ReactNode } from 'react'
 
 import { Logout } from '../logout'
@@ -18,6 +19,7 @@ type State = {
     earnedTokens: any
     incomingTokens: string
     tokensForClaiming: string
+    copiedCode: boolean
 }
 
 class Dashboard extends Component<{ history: any }, State> {
@@ -26,6 +28,7 @@ class Dashboard extends Component<{ history: any }, State> {
         super(props)
 
         this.claim = this.claim.bind(this)
+        this.copyReferralCode = this.copyReferralCode.bind(this)
 
         this.state = {
             email: '',
@@ -35,7 +38,8 @@ class Dashboard extends Component<{ history: any }, State> {
             referralLink: '',
             earnedTokens: {},
             incomingTokens: '0',
-            tokensForClaiming: '0'
+            tokensForClaiming: '0',
+            copiedCode: false
         }
     }
 
@@ -55,7 +59,7 @@ class Dashboard extends Component<{ history: any }, State> {
                 address: user.wallet.address,
                 ethBalance,
                 tokensBalance,
-                referralLink: user.referralLink,
+                referralLink: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
                 earnedTokens: user.earnedTokens,
                 incomingTokens: user.incomingTokens,
                 tokensForClaiming: user.tokensForClaiming
@@ -102,6 +106,11 @@ class Dashboard extends Component<{ history: any }, State> {
                 ethBalance: this.state.ethBalance
             }
         })
+    }
+
+    public copyReferralCode () {
+        copy(this.state.referralLink)
+        this.setState({ copiedCode: true })
     }
 }
 

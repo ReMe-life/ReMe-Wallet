@@ -8,7 +8,7 @@ class BalanceService {
     private provider: any;
     private tokenContract: any;
 
-    private constructor() {
+    private constructor () {
         this.provider = new ethers.providers.InfuraProvider(BLOCKCHAIN_CONFIG.network)
         this.tokenContract = new ethers.Contract(BLOCKCHAIN_CONFIG.tokenAddress, tokenContractAbi.abi, this.provider)
     }
@@ -22,14 +22,25 @@ class BalanceService {
 
     public async ethAmount (accountAddress: string): Promise<string> {
         const ethAmount = await this.provider.getBalance(accountAddress);
-        return ethAmount.toString()
+        return this.formatAmount(ethAmount.toString())
     }
 
     public async tokensAmount (accountAddress: string): Promise<string> {
         const tokensAmount = await this.tokenContract.balanceOf(accountAddress);
-        return tokensAmount.toString()
+        return this.formatAmount(tokensAmount.toString())
     }
 
+    private formatAmount (amount: string): string {
+        if (amount.length <= 1) {
+            return amount
+        }
+
+        const formattedAmount = amount.padStart(19, '0')
+        const fractionPart = formattedAmount.substr(formattedAmount.length - 18).substr(0, 4)
+        const intPart = formattedAmount.substr(0, formattedAmount.length - 18)
+
+        return `${intPart}.${fractionPart}`
+    }
 }
 
 export default BalanceService.getInstance()
