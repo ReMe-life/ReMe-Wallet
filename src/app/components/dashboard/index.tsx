@@ -38,7 +38,7 @@ class Dashboard extends Component<{ history: any }, State> {
             referralLink: '',
             earnedTokens: {},
             incomingTokens: '',
-            tokensForClaiming: '',
+            tokensForClaiming: '0',
             copiedCode: false
         }
     }
