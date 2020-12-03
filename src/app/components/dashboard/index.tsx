@@ -33,12 +33,12 @@ class Dashboard extends Component<{ history: any }, State> {
         this.state = {
             email: '',
             address: '',
-            ethBalance: '0',
-            tokensBalance: '0',
+            ethBalance: '',
+            tokensBalance: '',
             referralLink: '',
             earnedTokens: {},
-            incomingTokens: '0',
-            tokensForClaiming: '0',
+            incomingTokens: '',
+            tokensForClaiming: '',
             copiedCode: false
         }
     }

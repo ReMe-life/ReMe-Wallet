@@ -8,6 +8,9 @@ export const DashboardRender = function (context: any) {
             <div className='address-wrapper'>
                 <p>Your address &nbsp;&nbsp;&nbsp;<strong>{context.state.address}</strong></p>
             </div>
+            <div className='address-wrapper'>
+                <p>Incoming&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.incomingTokens}</strong></p>
+            </div>
             <div className='tokens-wrapper'>
                 <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></p>
                 <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethBalance}</strong></p>
