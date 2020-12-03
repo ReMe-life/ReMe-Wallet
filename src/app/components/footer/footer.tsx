@@ -1,6 +1,5 @@
 import React from 'react'
 import RemeLogo from '../../assets/svg/reme-logo-light.svg'
-import TermsIcon from '../../assets/svg/terms.svg'
 
 export const Footer = function (context: any) {
     return (
