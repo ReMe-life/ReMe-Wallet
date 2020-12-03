@@ -6,7 +6,7 @@ export const Footer = function (context: any) {
         <footer>
             <img src={RemeLogo} alt='ReMeLife' />
             <h3><i>ReMe</i>&nbsp;Life</h3>
-            <div className='btn'>Do you need help?</div>
+            <div className='btn' onClick={() => { window.open('https://remelife.com/privacy-policy') }}>Do you need help?</div>
         </footer>
     )
 }
