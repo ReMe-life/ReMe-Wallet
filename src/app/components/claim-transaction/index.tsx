@@ -13,6 +13,7 @@ type State = {
     password: string
     claimService: any
     ethBalance: string
+    tokensForClaiming: string
 }
 
 class ClaimTransaction extends Component<{ history: any }, State> {
@@ -32,7 +33,8 @@ class ClaimTransaction extends Component<{ history: any }, State> {
             txFee: '0',
             password: '',
             claimService: {},
-            ethBalance: this.props.history.location.state.ethBalance
+            ethBalance: this.props.history.location.state.ethBalance,
+            tokensForClaiming: ''
         }
     }
 
@@ -44,7 +46,7 @@ class ClaimTransaction extends Component<{ history: any }, State> {
         // @ts-ignore
         const user = JSON.parse(localStorage.getItem('user'))
 
-        const claimService = new ClaimService(claimData, user.tokensForClaiming, user.wallet)
+        const claimService = new ClaimService(claimData, user.wallet)
         const txFee = await claimService.claimFee()
 
         if (txFee.gt(this.state.ethBalance)) {
@@ -59,7 +61,8 @@ class ClaimTransaction extends Component<{ history: any }, State> {
 
         this.setState({
             txFee,
-            claimService
+            claimService,
+            tokensForClaiming: user.tokensForClaiming
         })
     }
 

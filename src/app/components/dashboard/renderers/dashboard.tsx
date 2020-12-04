@@ -13,11 +13,12 @@ export const DashboardRender = function (context: any) {
             </div>
             <div className='tokens-wrapper'>
                 <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></p>
+                <p> TODO: ADD SUBTYPES</p>
                 <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethBalance}</strong></p>
             </div>
             <dl className='referral-titles'>
-                <dt>Referral Code</dt>
-                <dd><a href='/dashboard'>ReMe Referal Platform</a></dd>
+                <dt>Don't forget to invite your family and friends</dt>
+                <dd><a href='/dashboard'>ReMe Referral Platform</a></dd>
             </dl>
             <div className='input-wrapper'>
                 <input type='text' value={context.state.referralLink} />

@@ -7,15 +7,16 @@ export class ClaimService {
 
     private proof: any[]
     private index: string
-    private tokensForClaiming: string
+    private distributedTokens: string
 
     private contract: any
     private wallet: any
 
-    public constructor (claimData: any, tokensForClaiming: string, wallet: any) {
+    public constructor (claimData: any, wallet: any) {
         this.proof = claimData.proof
+        this.distributedTokens = claimData.distributedTokens
         this.index = claimData.distributionIndex
-        this.tokensForClaiming = tokensForClaiming
+
         this.wallet = wallet
 
         const provider = new providers.JsonRpcProvider(process.env.RECT_APP_BLOCKCHAIN_NETWORK)
@@ -34,11 +35,11 @@ export class ClaimService {
         return this.contract.claim(
             this.index,
             this.proof,
-            this.tokensForClaiming
+            this.distributedTokens
         )
     }
 
     public async claimFee () {
-        return this.contract.estimateGas.claim(this.index, this.proof, this.tokensForClaiming)
+        return this.contract.estimateGas.claim(this.index, this.proof, this.distributedTokens)
     }
 }

@@ -316,6 +316,14 @@ footer {
   }
 }
 
+.mnemonic-wrapper {
+  button:disabled {
+    background-color: var(--primary300);
+    background-image: none;
+  }
+
+}
+
 .claim-wrapper {
   max-width: 480px;
 
