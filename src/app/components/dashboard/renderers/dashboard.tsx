@@ -12,8 +12,13 @@ export const DashboardRender = function (context: any) {
                 <p>Incoming&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.incomingTokens}</strong></p>
             </div>
             <div className='tokens-wrapper'>
-                <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></p>
-                <p> TODO: ADD SUBTYPES</p>
+                <p> 
+                    <div>Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></div>
+                    <ul className='token-details'>
+                        <li><span>Signup bonus</span><strong>{context.state.tokensBalance}</strong></li>
+                        <li><span>From referrals</span><strong>{context.state.tokensBalance}</strong></li>
+                    </ul>
+                </p>
                 <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethBalance}</strong></p>
             </div>
             <dl className='referral-titles'>
