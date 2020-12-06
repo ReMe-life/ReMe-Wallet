@@ -45,6 +45,6 @@ class InsufficientBalance extends Component<{ history: any }, State> {
 export default requireStateOrRedirectTo(
     ['txFee', 'address'],
     InsufficientBalance,
-    'insufficient-balance',
+    '/insufficient-balance',
     '/dashboard'
 )

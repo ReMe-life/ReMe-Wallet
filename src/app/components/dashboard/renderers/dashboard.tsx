@@ -12,12 +12,18 @@ export const DashboardRender = function (context: any) {
                 <p>Incoming&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.incomingTokens}</strong></p>
             </div>
             <div className='tokens-wrapper'>
-                <p> Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></p>
-                <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethBalance}</strong></p>
+                <p>
+                    <div>Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance.formatted}</strong></div>
+                    <ul className='token-details'>
+                        <li><span>SignUp bonus</span><strong>{context.state.earnedTokens.signup}</strong></li>
+                        <li><span>From referrals</span><strong>{context.state.earnedTokens.referral}</strong></li>
+                    </ul>
+                </p>
+                <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethBalance.formatted}</strong></p>
             </div>
             <dl className='referral-titles'>
-                <dt>Referral Code</dt>
-                <dd><a href='/dashboard'>ReMe Referal Platform</a></dd>
+                <dt>Don't forget to invite your family and friends</dt>
+                <dd><a href='/dashboard'>ReMe Referral Platform</a></dd>
             </dl>
             <div className='input-wrapper'>
                 <input type='text' value={context.state.referralLink} />

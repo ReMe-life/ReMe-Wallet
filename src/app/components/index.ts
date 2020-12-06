@@ -6,7 +6,7 @@ import Mnemonic from './mnemonic'
 import Dashboard from './dashboard'
 import Registration from './registration'
 import ClaimTransaction from './claim-transaction'
-import InsuffitientBalance from './insufficient-balance'
+import InsufficientBalance from './insufficient-balance'
 
 export {
     Login,
@@ -16,5 +16,5 @@ export {
     Dashboard,
     Registration,
     ClaimTransaction,
-    InsuffitientBalance
+    InsufficientBalance
 }

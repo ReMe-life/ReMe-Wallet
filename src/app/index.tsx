@@ -10,7 +10,7 @@ import {
 	Dashboard,
 	Mnemonic,
 	ClaimTransaction,
-	InsuffitientBalance
+	InsufficientBalance
 } from './components'
 
 type State = {
@@ -35,7 +35,7 @@ export class App extends Component<{}, State> {
 					<Route exact path='/dashboard' component={Dashboard} />
 					<Route exact path='/mnemonic' component={Mnemonic} />
 					<Route exact path='/claim' component={ClaimTransaction} />
-					<Route exact path='/insufficient-balance' component={InsuffitientBalance} />
+					<Route exact path='/insufficient-balance' component={InsufficientBalance} />
 				</Router>
 				<Footer />
 			</div>

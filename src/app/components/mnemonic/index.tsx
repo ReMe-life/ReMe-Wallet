@@ -12,6 +12,7 @@ type State = {
     copiedMnemonic: boolean
     originalMnemonic: string
     confirmedMnemonic: string
+    copiedOrDownloaded: boolean
 }
 
 class Mnemonic extends Component<{ history: any }, State> {
@@ -31,7 +32,8 @@ class Mnemonic extends Component<{ history: any }, State> {
             copiedMnemonic: false,
             // @ts-ignore
             originalMnemonic: this.props.history.location.state.mnemonic.phrase,
-            confirmedMnemonic: ''
+            confirmedMnemonic: '',
+            copiedOrDownloaded: false
         }
     }
 
@@ -48,12 +50,13 @@ class Mnemonic extends Component<{ history: any }, State> {
 
     public copyMnemonic () {
         copy(this.state.originalMnemonic)
-        this.setState({ copiedMnemonic: true })
+        this.setState({ copiedMnemonic: true, copiedOrDownloaded: true })
     }
 
     public downloadMnemonic () {
-        var data = new Blob([this.state.originalMnemonic], { type: 'text/plain;charset=utf-8' });
+        const data = new Blob([this.state.originalMnemonic], { type: 'text/plain;charset=utf-8' });
         saveAs(data, 'mnemonic.txt');
+        this.setState({ copiedOrDownloaded: true })
     }
 
     public confirmMnemonic () {

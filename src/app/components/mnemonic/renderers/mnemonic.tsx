@@ -21,10 +21,10 @@ const mnemonic = function (context: any) {
                     })}
                 </div>
                 <button className='btn primary-subtle' onClick={context.copyMnemonic}>{context.state.copiedMnemonic ? 'Copied!' : 'Copy'}</button>
-                <button className='btn primary-subtle' onClick={context.downloadMnemonic}>Download as text</button>
+                <button className='btn primary-subtle' onClick={context.downloadMnemonic}>Download it as text</button>
             </div>
             <p>Note that <strong>you will only see this code once</strong>. After you saved it, click the button below to continue.</p>
-            <button className='btn primary' onClick={context.confirmMnemonic}>I have saved the code</button>
+            <button className='btn primary' disabled={!context.state.copiedOrDownloaded} onClick={context.confirmMnemonic}>I have saved the code</button>
         </div>
     )
 }
