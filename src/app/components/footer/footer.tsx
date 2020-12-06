@@ -9,7 +9,7 @@ export const Footer = function (context: any) {
             <h3><i>ReMe</i>&nbsp;Life</h3>
             <div className='btn' onClick={() => { window.open('https://remelife.com/help/wallet') }}>Do you need help?</div>
             <div className='terms' onClick={() => { window.open('https://remelife.com/terms-and-conditions/') }}>
-                <img src={TermsIcon} />
+                <img alt='Term image' src={TermsIcon} />
             Terms and Conditions
         </div>
         </footer>
