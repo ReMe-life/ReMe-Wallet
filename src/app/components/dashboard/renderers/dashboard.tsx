@@ -13,13 +13,13 @@ export const DashboardRender = function (context: any) {
             </div>
             <div className='tokens-wrapper'>
                 <p>
-                    <div>Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance}</strong></div>
+                    <div>Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance.formatted}</strong></div>
                     <ul className='token-details'>
                         <li><span>SignUp bonus</span><strong>{context.state.earnedTokens.signup}</strong></li>
                         <li><span>From referrals</span><strong>{context.state.earnedTokens.referral}</strong></li>
                     </ul>
                 </p>
-                <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethBalance}</strong></p>
+                <p> Your ETH balance&nbsp;&nbsp;&nbsp;<strong>ETH {context.state.ethBalance.formatted}</strong></p>
             </div>
             <dl className='referral-titles'>
                 <dt>Don't forget to invite your family and friends</dt>

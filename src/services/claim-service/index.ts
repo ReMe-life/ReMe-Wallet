@@ -1,7 +1,8 @@
 import { abi } from './abi.json'
-
+import { formatAmount } from '../../utils'
 import { providers, Contract } from 'ethers';
-import { WalletService } from '../wallet-service'
+
+import { ETHClient } from '../../clients'
 
 export class ClaimService {
 
@@ -10,36 +11,37 @@ export class ClaimService {
     private distributedTokens: string
 
     private contract: any
-    private wallet: any
+    private address: any
 
-    public constructor (claimData: any, wallet: any) {
+    public constructor (claimData: any, address: string) {
         this.proof = claimData.proof
         this.distributedTokens = claimData.distributedTokens
         this.index = claimData.distributionIndex
+        this.address = address
 
-        this.wallet = wallet
-
-        const provider = new providers.JsonRpcProvider(process.env.RECT_APP_BLOCKCHAIN_NETWORK)
+        const provider = new providers.JsonRpcProvider(process.env.REACT_APP_BLOCKCHAIN_NETWORK)
         // @ts-ignore
-        this.contract = new Contract(process.env.RECT_APP_DISTRIBUTION_CONTRACT, abi, provider)
+        this.contract = new Contract(process.env.REACT_APP_DISTRIBUTION_CONTRACT, abi, provider)
     }
 
-    public async claim (password: any) {
-        try {
-            this.contract.connect(WalletService.fromEncryptedJson(this.wallet.json, password))
-        } catch (error) {
-            console.log(error)
-            throw new Error('Invalid Wallet')
-        }
-
-        return this.contract.claim(
-            this.index,
+    public async claim (signer: any) {
+        const contract = this.contract.connect(signer)
+        return contract.claim(
+            signer.address,
+            this.distributedTokens,
             this.proof,
-            this.distributedTokens
+            this.index
         )
     }
 
-    public async claimFee () {
-        return this.contract.estimateGas.claim(this.index, this.proof, this.distributedTokens)
+    public async claimFee (): Promise<any> {
+        const gasPrice = await ETHClient.gasPrice()
+        const gasLimit = await this.contract.estimateGas.claim(this.address, this.distributedTokens, this.proof, this.index)
+        const fee = gasLimit.mul(gasPrice)
+
+        return {
+            pure: fee,
+            formatted: formatAmount(fee.toString(), 18)
+        }
     }
 }

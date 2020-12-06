@@ -4,12 +4,11 @@ import { PasswordConfirmationRender } from './renderers'
 
 import { requireStateOrRedirectTo } from '../HOCs'
 import { ErrorPopUp } from '../../errors'
-import { ReMePalClient } from '../../../clients'
-import { ClaimService } from '../../../services'
+import { WalletService, ClaimService, UserService } from '../../../services'
 
 
 type State = {
-    txFee: string
+    txFee: any
     password: string
     claimService: any
     ethBalance: string
@@ -30,7 +29,7 @@ class ClaimTransaction extends Component<{ history: any }, State> {
         this.confirmTransaction = this.confirmTransaction.bind(this)
 
         this.state = {
-            txFee: '0',
+            txFee: {},
             password: '',
             claimService: {},
             ethBalance: this.props.history.location.state.ethBalance,
@@ -42,26 +41,16 @@ class ClaimTransaction extends Component<{ history: any }, State> {
         // @ts-ignore
         const token = localStorage.getItem('token')
         // @ts-ignore
-        const claimData = await ReMePalClient.getClaimData(token)
+        const claimData = await UserService.getClaimData(token)
         // @ts-ignore
         const user = JSON.parse(localStorage.getItem('user'))
 
-        const claimService = new ClaimService(claimData, user.wallet)
+        const claimService = new ClaimService(claimData, user.wallet.address)
         const txFee = await claimService.claimFee()
 
-        if (txFee.gt(this.state.ethBalance)) {
-            return this.props.history.push({
-                pathname: '/insufficient-balance',
-                state: {
-                    txFee: txFee.toString(),
-                    address: user.wallet.address
-                }
-            })
-        }
-
         this.setState({
-            txFee,
             claimService,
+            txFee: txFee,
             tokensForClaiming: user.tokensForClaiming
         })
     }
@@ -83,7 +72,20 @@ class ClaimTransaction extends Component<{ history: any }, State> {
 
     public async confirmTransaction () {
         try {
-            await this.state.claimService.claim(this.state.password)
+            // @ts-ignore
+            const user = JSON.parse(localStorage.getItem('user'))
+            if (this.state.txFee.pure.gt(this.state.ethBalance)) {
+                return this.props.history.push({
+                    pathname: '/insufficient-balance',
+                    state: {
+                        txFee: this.state.txFee.formatted,
+                        address: user.wallet.address
+                    }
+                })
+            }
+
+            const signer = await WalletService.loadSignerFromWallet(user.wallet.json, this.state.password)
+            await this.state.claimService.claim(signer)
 
             this.props.history.push({
                 pathname: '/dashboard',
@@ -92,10 +94,11 @@ class ClaimTransaction extends Component<{ history: any }, State> {
                 }
             })
         } catch (error) {
+            console.log(error)
+
             if (error.message.includes('Invalid Wallet')) {
                 return ErrorPopUp.show('Incorrect password')
             }
-
             ErrorPopUp.show('Claim failed!')
         }
     }

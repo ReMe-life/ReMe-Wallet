@@ -7,19 +7,19 @@ import { DashboardRender } from './renderers'
 import { withoutAuth } from '../HOCs'
 import { clearLocalStorage } from '../helpers'
 
-import { ReMePalClient } from '../../../clients'
-import { BalanceService } from '../../../services'
+import { BalanceService, UserService } from '../../../services'
 
 type State = {
     email: string
     address: string
-    ethBalance: string
-    tokensBalance: string
+    ethBalance: any
+    tokensBalance: any
     referralLink: string
     earnedTokens: any
     incomingTokens: string
     tokensForClaiming: string
     copiedCode: boolean
+    txBroadcasted: boolean
 }
 
 class Dashboard extends Component<{ history: any }, State> {
@@ -30,16 +30,24 @@ class Dashboard extends Component<{ history: any }, State> {
         this.claim = this.claim.bind(this)
         this.copyReferralCode = this.copyReferralCode.bind(this)
 
+        const txBroadcasted = this.props.history.location.state && this.props.history.location.state.txBroadcasted
+        if (txBroadcasted) {
+            let state = { ...this.props.history.location.state };
+            delete state.txBroadcasted;
+            this.props.history.replace({ ...this.props.history.location, state });
+        }
+
         this.state = {
             email: '',
             address: '',
-            ethBalance: '',
-            tokensBalance: '',
+            ethBalance: {},
+            tokensBalance: {},
             referralLink: '',
             earnedTokens: {},
             incomingTokens: '',
-            tokensForClaiming: '0',
-            copiedCode: false
+            tokensForClaiming: '0.0000',
+            copiedCode: false,
+            txBroadcasted
         }
     }
 
@@ -48,7 +56,7 @@ class Dashboard extends Component<{ history: any }, State> {
             // @ts-ignore
             const token = localStorage.getItem('token')
             // @ts-ignore
-            const user = await ReMePalClient.getUserDetails(token)
+            const user = await UserService.getUserDetails(token)
             localStorage.setItem('user', JSON.stringify(user))
 
             const ethBalance = await BalanceService.ethAmount(user.wallet.address)
@@ -77,7 +85,7 @@ class Dashboard extends Component<{ history: any }, State> {
                 <h2>Your home page</h2>
                 <div className='common-wrapper'>
                     {DashboardRender(this)}
-                    {this.state.tokensForClaiming === '0' ?
+                    {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
                         null :
                         <div className='claim'>
                             <div className='message'>You've got <strong>ReMC {this.state.tokensForClaiming}</strong> ready to be claimed.</div>
@@ -85,9 +93,7 @@ class Dashboard extends Component<{ history: any }, State> {
                         </div>
                     }
 
-                    {this.props.history.location &&
-                        this.props.history.location.state &&
-                        this.props.history.location.state.txBroadcasted ?
+                    {this.state.txBroadcasted ?
                         <div className='claim'>
                             <div className='success-message'>Thank you for claiming your tokens. Your transaction is being processed</div>
                         </div>
@@ -103,7 +109,7 @@ class Dashboard extends Component<{ history: any }, State> {
         this.props.history.push({
             pathname: '/claim',
             state: {
-                ethBalance: this.state.ethBalance
+                ethBalance: this.state.ethBalance.pure
             }
         })
     }
