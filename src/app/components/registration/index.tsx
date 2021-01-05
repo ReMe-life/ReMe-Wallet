@@ -7,9 +7,12 @@ import { UserService } from '../../../services'
 type State = {
     email: string
     password: string
+    repassword: string
     firstName: string
     lastName: string
     loading: boolean
+    toggleShow: boolean
+    reToggleShow: boolean
 }
 
 class Registration extends Component<{ history: any, match: any }, State> {
@@ -20,15 +23,21 @@ class Registration extends Component<{ history: any, match: any }, State> {
         this.register = this.register.bind(this)
         this.onEmail = this.onEmail.bind(this)
         this.onPassword = this.onPassword.bind(this)
+        this.onRePassword = this.onRePassword.bind(this)
         this.onFirstName = this.onFirstName.bind(this)
         this.onLastName = this.onLastName.bind(this)
+        this.setToggle = this.setToggle.bind(this)
+        this.setReToggle = this.setReToggle.bind(this)
 
         this.state = {
             email: '',
             password: '',
+            repassword: '',
             firstName: '',
             lastName: '',
-            loading: false
+            loading: false,
+            toggleShow: false,
+            reToggleShow: false
         }
     }
 
@@ -44,6 +53,10 @@ class Registration extends Component<{ history: any, match: any }, State> {
         this.setState({ password: event.target.value })
     }
 
+    public onRePassword (event: any) {
+        this.setState({ repassword: event.target.value })
+    }
+
     public onFirstName (event: any) {
         this.setState({ firstName: event.target.value })
     }
@@ -52,7 +65,25 @@ class Registration extends Component<{ history: any, match: any }, State> {
         this.setState({ lastName: event.target.value })
     }
 
+    public setToggle () {
+        this.setState({ toggleShow: !this.state.toggleShow })
+    }
+
+    public setReToggle () {
+        this.setState({ reToggleShow: !this.state.reToggleShow })
+    }
+
     public async register () {
+        if (this.state.password.length < (process.env.REACT_APP_PASSWORD_MIN_CHARACTERS || 1)) {
+            ErrorPopUp.show(`Password minimum: At least ${process.env.REACT_APP_PASSWORD_MIN_CHARACTERS || 1} characters`)
+            return void 0
+        }
+
+        if (this.state.password !== this.state.repassword) {
+            ErrorPopUp.show('Passwords don\'t match')
+            return void 0
+        }
+
         try {
             this.setState({ loading: true })
 
@@ -74,7 +105,7 @@ class Registration extends Component<{ history: any, match: any }, State> {
             this.setState({ loading: false })
 
             console.log(error)
-            ErrorPopUp.show('Registration failed')
+            ErrorPopUp.show(JSON.parse(error.message).message)
         }
     }
 

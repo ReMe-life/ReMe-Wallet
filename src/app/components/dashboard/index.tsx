@@ -19,6 +19,7 @@ type State = {
     incomingTokens: string
     tokensForClaiming: string
     copiedCode: boolean
+    copiedWalletAddress: boolean
     txBroadcasted: boolean
 }
 
@@ -29,6 +30,7 @@ class Dashboard extends Component<{ history: any }, State> {
 
         this.claim = this.claim.bind(this)
         this.copyReferralCode = this.copyReferralCode.bind(this)
+        this.copyWalletAddress = this.copyWalletAddress.bind(this)
 
         const txBroadcasted = this.props.history.location.state && this.props.history.location.state.txBroadcasted
         if (txBroadcasted) {
@@ -47,6 +49,7 @@ class Dashboard extends Component<{ history: any }, State> {
             incomingTokens: '',
             tokensForClaiming: '0.0000',
             copiedCode: false,
+            copiedWalletAddress: false,
             txBroadcasted
         }
     }
@@ -82,7 +85,6 @@ class Dashboard extends Component<{ history: any }, State> {
         return (
             <section className='wrapper homepage'>
                 <Logout history={this.props.history} email={this.state.email} />
-                <h2>Your home page</h2>
                 <div className='common-wrapper'>
                     {DashboardRender(this)}
                     {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
@@ -112,6 +114,11 @@ class Dashboard extends Component<{ history: any }, State> {
                 ethBalance: this.state.ethBalance.pure
             }
         })
+    }
+
+    public copyWalletAddress () {
+        copy(this.state.address)
+        this.setState({ copiedWalletAddress: true })
     }
 
     public copyReferralCode () {
