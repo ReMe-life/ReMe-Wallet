@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js'
 import { ReMePalClient } from '../clients'
 import { WalletService } from './wallet-service'
 
@@ -30,8 +31,13 @@ export class UserService {
         const result = await ReMePalClient.getUserDetails(token)
         result.incomingTokens = formatAmount(result.incomingTokens)
         result.tokensForClaiming = formatAmount(result.tokensForClaiming)
-        result.earnedTokens.signup = formatAmount(result.earnedTokens.signup)
-        result.earnedTokens.referral = formatAmount(result.earnedTokens.referral)
+
+        const bnTokensForClaiming = new BigNumber(result.tokensForClaiming)
+
+        result.claimTokens = {
+            signup: new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(result.signupTokens) : formatAmount('0'),
+            referral: new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(bnTokensForClaiming.multipliedBy('1000000000000000000').minus(result.signupTokens).toString()) : result.tokensForClaiming
+        }
 
         return result
     }
