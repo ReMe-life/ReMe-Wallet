@@ -15,7 +15,7 @@ type State = {
     ethBalance: any
     tokensBalance: any
     referralLink: string
-    earnedTokens: any
+    claimTokens: any
     incomingTokens: string
     tokensForClaiming: string
     copiedCode: boolean
@@ -45,7 +45,7 @@ class Dashboard extends Component<{ history: any }, State> {
             ethBalance: {},
             tokensBalance: {},
             referralLink: '',
-            earnedTokens: {},
+            claimTokens: {},
             incomingTokens: '',
             tokensForClaiming: '0.0000',
             copiedCode: false,
@@ -71,7 +71,7 @@ class Dashboard extends Component<{ history: any }, State> {
                 ethBalance,
                 tokensBalance,
                 referralLink: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
-                earnedTokens: user.earnedTokens,
+                claimTokens: user.claimTokens,
                 incomingTokens: user.incomingTokens,
                 tokensForClaiming: user.tokensForClaiming
             })
@@ -90,7 +90,7 @@ class Dashboard extends Component<{ history: any }, State> {
                     {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
                         null :
                         <div className='claim'>
-                            <div className='message'>You've got <strong>ReMC {this.state.tokensForClaiming}</strong> ready to be claimed.</div>
+                            {/* <div className='message'>You've got <strong>ReMC {this.state.tokensForClaiming}</strong> ready to be claimed.</div> */}
                             <button className='btn primary' onClick={this.claim}>Claim now</button>
                         </div>
                     }

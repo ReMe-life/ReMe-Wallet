@@ -44,10 +44,8 @@ export const DashboardRender = function (context: any) {
             <div className='tokens-claimed-wrapper'>
                 <p className="one-flex-item">
                     <div><strong>ReMC's claimed and available now</strong></div>
-                    {/* <div>Your ReMC balance&nbsp;&nbsp;&nbsp;<strong>ReMC {context.state.tokensBalance.formatted}</strong></div> */}
                     <ul className='token-details'>
-                        {/* <li><span>SignUp bonus</span><strong>{context.state.earnedTokens.signup}</strong></li> */}
-                        <li><span>Available ReMCs</span><span className="tokens-total-amount">{context.state.earnedTokens.referral}</span></li>
+                        <li><span>Available ReMCs</span><span className="tokens-total-amount">{context.state.tokensBalance.formatted}</span></li>
                     </ul>
                 </p>
                 <p className="one-flex-item">
@@ -62,9 +60,9 @@ export const DashboardRender = function (context: any) {
                 <p className="one-flex-item">
                     <div><strong>ReMC's ready to be claimed:</strong></div>
                     <ul className='token-details'>
-                        <li><span>SignUp bonus</span>{context.state.earnedTokens.signup}</li>
-                        <li><span>From referrals</span>{context.state.earnedTokens.referral}</li>
-                        <li><span></span><span className="tokens-total-amount">15.0000</span></li>
+                        <li><span>SignUp bonus</span>{context.state.claimTokens.signup}</li>
+                        <li><span>From referrals</span>{context.state.claimTokens.referral}</li>
+                        <li><span></span><span className="tokens-total-amount">{context.state.tokensForClaiming}</span></li>
                     </ul>
                 </p>
             </div>
