@@ -71,7 +71,7 @@ class Dashboard extends Component<{ history: any }, State> {
                 address: user.wallet.address,
                 ethBalance,
                 tokensBalance,
-                referralCode: `${window.location.protocol}//${window.location.host}/registration/${user.referralCode}`,
+                referralCode: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
                 referralPlatformUserLink: `${process.env.REACT_APP_REMEPAL_PLATFORM}/${encToken}`,
                 claimTokens: user.claimTokens,
                 tokensForClaiming: user.tokensForClaiming
