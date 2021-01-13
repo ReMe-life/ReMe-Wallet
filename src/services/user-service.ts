@@ -8,19 +8,19 @@ export class UserService {
 
     static async register (email: string, password: string): Promise<any> {
         const wallet = await WalletService.randomWallet(password);
-        const token = await ReMePalClient.register(
+        const tokenData = await ReMePalClient.register(
             { email, password },
             wallet
         )
 
-        return { token, mnemonic: wallet.mnemonic }
+        return { tokenData, mnemonic: wallet.mnemonic }
     }
 
     static async registerByReferral (userDetails: any, referredBy: string): Promise<any> {
         const wallet = await WalletService.randomWallet(userDetails.password);
-        const token = await ReMePalClient.registerByReferral(userDetails, wallet, referredBy)
+        const tokenData = await ReMePalClient.registerByReferral(userDetails, wallet, referredBy)
 
-        return { token, mnemonic: wallet.mnemonic }
+        return { tokenData, mnemonic: wallet.mnemonic }
     }
 
     static async login (email: string, password: string): Promise<any> {
@@ -31,12 +31,16 @@ export class UserService {
         const result = await ReMePalClient.getUserDetails(token)
         result.incomingTokens = formatAmount(result.incomingTokens)
         result.tokensForClaiming = formatAmount(result.tokensForClaiming)
-
-        const bnTokensForClaiming = new BigNumber(result.tokensForClaiming)
-
         result.claimTokens = {
-            signup: new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(result.signupTokens) : formatAmount('0'),
-            referral: new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(bnTokensForClaiming.multipliedBy('1000000000000000000').minus(result.signupTokens).toString()) : result.tokensForClaiming
+            signup: formatAmount('0'),
+            referral: formatAmount('0')
+        }
+
+        if (new BigNumber(result.tokensForClaiming).gt(0)) {
+            result.claimTokens.signup = new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(result.signupTokens) : formatAmount('0')
+
+            const bnTokensForClaiming = new BigNumber(result.tokensForClaiming)
+            result.claimTokens.referral = new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(bnTokensForClaiming.multipliedBy('1000000000000000000').minus(result.signupTokens).toString()) : result.tokensForClaiming
         }
 
         return result

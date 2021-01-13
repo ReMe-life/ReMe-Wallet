@@ -14,9 +14,9 @@ type State = {
     address: string
     ethBalance: any
     tokensBalance: any
-    referralLink: string
+    referralCode: string
+    referralPlatformUserLink: string
     claimTokens: any
-    incomingTokens: string
     tokensForClaiming: string
     copiedCode: boolean
     copiedWalletAddress: boolean
@@ -44,9 +44,9 @@ class Dashboard extends Component<{ history: any }, State> {
             address: '',
             ethBalance: {},
             tokensBalance: {},
-            referralLink: '',
+            referralCode: '',
+            referralPlatformUserLink: '',
             claimTokens: {},
-            incomingTokens: '',
             tokensForClaiming: '0.0000',
             copiedCode: false,
             copiedWalletAddress: false,
@@ -58,6 +58,7 @@ class Dashboard extends Component<{ history: any }, State> {
         try {
             // @ts-ignore
             const token = localStorage.getItem('token')
+            const encToken = localStorage.getItem('encToken')
             // @ts-ignore
             const user = await UserService.getUserDetails(token)
             localStorage.setItem('user', JSON.stringify(user))
@@ -70,9 +71,9 @@ class Dashboard extends Component<{ history: any }, State> {
                 address: user.wallet.address,
                 ethBalance,
                 tokensBalance,
-                referralLink: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
+                referralCode: `${window.location.protocol}//${window.location.host}/registration/${user.referralCode}`,
+                referralPlatformUserLink: `${process.env.REACT_APP_REMEPAL_PLATFORM}/${encToken}`,
                 claimTokens: user.claimTokens,
-                incomingTokens: user.incomingTokens,
                 tokensForClaiming: user.tokensForClaiming
             })
         } catch (error) {
@@ -90,14 +91,13 @@ class Dashboard extends Component<{ history: any }, State> {
                     {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
                         null :
                         <div className='claim'>
-                            {/* <div className='message'>You've got <strong>ReMC {this.state.tokensForClaiming}</strong> ready to be claimed.</div> */}
                             <button className='btn primary' onClick={this.claim}>Claim now</button>
                         </div>
                     }
 
                     {this.state.txBroadcasted ?
                         <div className='claim'>
-                            <div className='success-message'>Thank you for claiming your tokens. Your transaction is being processed</div>
+                            <div className='message'>Your transaction is being processed</div>
                         </div>
                         : null
                     }
@@ -122,7 +122,7 @@ class Dashboard extends Component<{ history: any }, State> {
     }
 
     public copyReferralCode () {
-        copy(this.state.referralLink)
+        copy(this.state.referralCode)
         this.setState({ copiedCode: true })
     }
 }

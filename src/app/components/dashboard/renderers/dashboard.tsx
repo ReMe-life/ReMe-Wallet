@@ -20,7 +20,7 @@ export const DashboardRender = function (context: any) {
                 <dt>Just copy and share the link below.</dt>
             </dl>
             <div className='input-wrapper'>
-                <input type='text' value={context.state.referralLink} />
+                <input type='text' value={context.state.referralCode} />
                 {context.state.copiedCode ?
                     <img src={CopiedIcon} alt='Show/hide' /> :
                     <img src={CopyIcon} alt='Show/hide' onClick={context.copyReferralCode} />
@@ -31,7 +31,7 @@ export const DashboardRender = function (context: any) {
                 <span className='message'>
                     <strong>Visit the</strong>
                 </span>
-                <span className='underline' onClick={() => window.open('#')}><strong>ReMe Referral Program</strong></span>
+                <span className='underline' onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}><strong>ReMe Referral Platform</strong></span>
             </div>
 
             <div className='wallet-title'>
