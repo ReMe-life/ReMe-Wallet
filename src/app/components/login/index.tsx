@@ -10,6 +10,7 @@ type State = {
     email: string
     password: string
     loading: boolean
+    toggleShow: boolean
 }
 
 class Login extends Component<{ history: any }, State> {
@@ -20,12 +21,13 @@ class Login extends Component<{ history: any }, State> {
         this.login = this.login.bind(this)
         this.onEmail = this.onEmail.bind(this)
         this.onPassword = this.onPassword.bind(this)
-
+        this.setToggle = this.setToggle.bind(this)
 
         this.state = {
             email: '',
             password: '',
-            loading: false
+            loading: false,
+            toggleShow: false,
         }
     }
 
@@ -41,18 +43,24 @@ class Login extends Component<{ history: any }, State> {
         this.setState({ password: event.target.value })
     }
 
+    public setToggle () {
+        this.setState({ toggleShow: !this.state.toggleShow })
+    }
+
     public async login () {
         try {
             this.setState({ loading: true })
 
-            const token = await UserService.login(this.state.email, this.state.password)
-            if (token) {
-                localStorage.setItem('token', token)
+            const tokenData = await UserService.login(this.state.email, this.state.password)
+            if (tokenData.token) {
+                localStorage.setItem('token', tokenData.token)
+                localStorage.setItem('encToken', tokenData.encToken)
                 return this.props.history.push('/dashboard')
             }
 
             const result = await UserService.register(this.state.email, this.state.password)
-            localStorage.setItem('token', result.token)
+            localStorage.setItem('token', result.tokenData.token)
+            localStorage.setItem('encToken', result.tokenData.encToken)
             this.props.history.push({
                 pathname: '/mnemonic',
                 state: { mnemonic: result.mnemonic }

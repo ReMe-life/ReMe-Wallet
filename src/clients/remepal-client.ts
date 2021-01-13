@@ -11,7 +11,7 @@ export class ReMePalClient {
             }
         )
 
-        return result.token
+        return result
     }
 
     static async registerByReferral (details: any, wallet: any, referredBy: string): Promise<any> {
@@ -24,7 +24,7 @@ export class ReMePalClient {
             }
         )
 
-        return result.token
+        return result
     }
 
     static async login (email: string, password: string): Promise<any> {
@@ -33,7 +33,7 @@ export class ReMePalClient {
             { email, password }
         )
 
-        return result.token
+        return result
     }
 
     static async getUserDetails (token: string): Promise<any> {
