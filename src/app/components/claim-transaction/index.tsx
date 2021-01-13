@@ -8,6 +8,7 @@ import { WalletService, ClaimService, UserService } from '../../../services'
 
 
 type State = {
+    loading: boolean
     txFee: any
     password: string
     claimService: any
@@ -29,6 +30,7 @@ class ClaimTransaction extends Component<{ history: any }, State> {
         this.confirmTransaction = this.confirmTransaction.bind(this)
 
         this.state = {
+            loading: false,
             txFee: {},
             password: '',
             claimService: {},
@@ -72,9 +74,13 @@ class ClaimTransaction extends Component<{ history: any }, State> {
 
     public async confirmTransaction () {
         try {
+            this.setState({ loading: true })
             // @ts-ignore
             const user = JSON.parse(localStorage.getItem('user'))
+            const signer = await WalletService.loadSignerFromWallet(user.wallet.json, this.state.password)
+
             if (this.state.txFee.pure.gt(this.state.ethBalance)) {
+                this.setState({ loading: false })
                 return this.props.history.push({
                     pathname: '/insufficient-balance',
                     state: {
@@ -84,9 +90,9 @@ class ClaimTransaction extends Component<{ history: any }, State> {
                 })
             }
 
-            const signer = await WalletService.loadSignerFromWallet(user.wallet.json, this.state.password)
             await this.state.claimService.claim(signer)
 
+            this.setState({ loading: false })
             this.props.history.push({
                 pathname: '/dashboard',
                 state: {
@@ -94,7 +100,7 @@ class ClaimTransaction extends Component<{ history: any }, State> {
                 }
             })
         } catch (error) {
-            console.log(error)
+            this.setState({ loading: false })
 
             if (error.message.includes('Invalid Wallet')) {
                 return ErrorPopUp.show('Incorrect password')
