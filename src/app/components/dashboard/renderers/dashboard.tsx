@@ -31,7 +31,7 @@ export const DashboardRender = function (context: any) {
                 <span className='message'>
                     <strong>Visit the</strong>
                 </span>
-                <span className='underline' onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}><strong>ReMe Referral Platform</strong></span>
+                <span className='underline' onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}><strong>ReMeLife Referral Program</strong></span>
             </div>
 
             <div className='wallet-title'>
