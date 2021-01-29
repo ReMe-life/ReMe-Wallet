@@ -56,10 +56,9 @@ class Dashboard extends Component<{ history: any }, State> {
 
     public async componentDidMount () {
         try {
-            // @ts-ignore
-            const token = localStorage.getItem('token')
+            const token = localStorage.getItem('token') || ''
             const encToken = localStorage.getItem('encToken')
-            // @ts-ignore
+
             const user = await UserService.getUserDetails(token)
             localStorage.setItem('user', JSON.stringify(user))
 

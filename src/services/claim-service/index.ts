@@ -20,8 +20,7 @@ export class ClaimService {
         this.address = address
 
         const provider = new providers.JsonRpcProvider(process.env.REACT_APP_BLOCKCHAIN_NETWORK)
-        // @ts-ignore
-        this.contract = new Contract(process.env.REACT_APP_DISTRIBUTION_CONTRACT, abi, provider)
+        this.contract = new Contract(process.env.REACT_APP_DISTRIBUTION_CONTRACT || '', abi, provider)
     }
 
     public async claim (signer: any) {

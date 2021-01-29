@@ -23,6 +23,12 @@
         margin: auto 15px 0;
     }
 
+    a { 
+      color: var(--primary500);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
     .password-wrapper {
         position: relative;
         img {
@@ -32,6 +38,27 @@
             top: 20px;
         }
     }
+}
+
+
+.login-actions{
+  display: flex;
+  flex-direction: column;
+}
+
+.login-action{
+  margin-bottom: 8%;
+}
+
+.recovery-options{
+  display: flex;
+  flex-direction: row;
+}
+
+.recovery-option{
+  text-transform: none;
+  border-radius: 0%;
+  margin-bottom: 10%;
 }
 
 .loader,
@@ -538,4 +565,10 @@ footer {
   color: var(--primary500);
   font-weight: 700;
   text-decoration: none;
+}
+
+.recovery-method-title{
+  font-size: 16px;
+  padding-bottom: 15px;
+  padding-left: -23px;
 }
