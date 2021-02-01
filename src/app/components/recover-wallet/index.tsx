@@ -24,10 +24,10 @@ export class WalletRecovery extends Component<{ history: any }, State> {
         this.onPassword = this.onPassword.bind(this)
         this.onMnemonic = this.onMnemonic.bind(this)
         this.recover = this.recover.bind(this)
-        this.initWalletFromPassword = this.initWalletFromPassword.bind(this)
-        this.initWalletFromMnemonic = this.initWalletFromMnemonic.bind(this)
         this.showMnemonicBox = this.showMnemonicBox.bind(this)
         this.showPasswordBox = this.showPasswordBox.bind(this)
+        this.initWalletFromPassword = this.initWalletFromPassword.bind(this)
+        this.initWalletFromMnemonic = this.initWalletFromMnemonic.bind(this)
 
         this.state = {
             password: '',
@@ -82,20 +82,18 @@ export class WalletRecovery extends Component<{ history: any }, State> {
         this.setState({ recoveryPhrase: event.target.value })
     }
 
-    // Todo: Test 2 times of reset
     public async recover () {
         try {
-            const user = JSON.parse(localStorage.getItem('user') || '')
-            const token = localStorage.getItem('encToken') || ''
             this.setState({ loading: true })
 
+            const token = localStorage.getItem('token') || ''
+            const user = await UserService.getUserDetails(token)
+
             // @ts-ignore
-            const wallet = this[`initWalletFrom${this.state.selectedRecoverMethod}`](user.wallet)
+            const wallet = await this[`initWalletFrom${this.state.selectedRecoverMethod}`](user.wallet.json)
             user.wallet = await wallet.encrypt(this.props.history.location.state.newPassword)
 
             await UserService.saveNewWallet(token, user.wallet)
-            localStorage.setItem('user', JSON.stringify(user))
-
             this.props.history.push('/dashboard')
         }
         catch (error) {

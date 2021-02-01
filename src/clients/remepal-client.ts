@@ -64,7 +64,7 @@ export class ReMePalClient {
     static async confirmReset (id: string, time: string, token: string, newPassword: string): Promise<void> {
         await HTTPRequester.post(
             `${process.env.REACT_APP_REMEPAL_API}/auth/reset/confirm`,
-            { id, time, token, password: newPassword }
+            { id, time: Number(time), token, password: newPassword }
         )
     }
 
