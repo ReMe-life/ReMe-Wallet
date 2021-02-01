@@ -30,7 +30,6 @@ class Mnemonic extends Component<{ history: any }, State> {
         this.state = {
             render: 'mnemonic',
             copiedMnemonic: false,
-            // @ts-ignore
             originalMnemonic: this.props.history.location.state.mnemonic.phrase,
             confirmedMnemonic: '',
             copiedOrDownloaded: false

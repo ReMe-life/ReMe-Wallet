@@ -40,12 +40,9 @@ class ClaimTransaction extends Component<{ history: any }, State> {
     }
 
     public async componentDidMount () {
-        // @ts-ignore
-        const token = localStorage.getItem('token')
-        // @ts-ignore
+        const token = localStorage.getItem('token') || ''
         const claimData = await UserService.getClaimData(token)
-        // @ts-ignore
-        const user = JSON.parse(localStorage.getItem('user'))
+        const user = JSON.parse(localStorage.getItem('user') || '')
 
         const claimService = new ClaimService(claimData, user.wallet.address)
         const txFee = await claimService.claimFee()
@@ -75,8 +72,7 @@ class ClaimTransaction extends Component<{ history: any }, State> {
     public async confirmTransaction () {
         try {
             this.setState({ loading: true })
-            // @ts-ignore
-            const user = JSON.parse(localStorage.getItem('user'))
+            const user = JSON.parse(localStorage.getItem('user') || '')
             const signer = await WalletService.loadSignerFromWallet(user.wallet.json, this.state.password)
 
             if (this.state.txFee.pure.gt(this.state.ethBalance)) {

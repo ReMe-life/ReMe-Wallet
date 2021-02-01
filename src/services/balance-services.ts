@@ -11,8 +11,7 @@ class BalanceService {
 
     private constructor () {
         this.provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_BLOCKCHAIN_NETWORK)
-        // @ts-ignore
-        this.tokenContract = new ethers.Contract(process.env.REACT_APP_TOKEN_CONTRACT, tokenContractAbi.abi, this.provider)
+        this.tokenContract = new ethers.Contract(process.env.REACT_APP_TOKEN_CONTRACT || '', tokenContractAbi.abi, this.provider)
     }
 
     static getInstance () {

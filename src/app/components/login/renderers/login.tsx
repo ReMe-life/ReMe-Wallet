@@ -12,7 +12,10 @@ export const LoginRender = function (context: any) {
                         <input size={30} placeholder='Password' type={context.state.toggleShow ? 'text' : 'password'} value={context.state.password} className='form-control input' onChange={context.onPassword} />
                         <img src={PasswordToggle} alt='Show/hide password' onClick={context.setToggle} />
                     </div>
-                    <button type='button' className='btn primary' disabled={context.state.loading} onClick={context.login}> {context.state.loading ? <div className='loader'></div> : 'Login'}</button>
+                    <div className="login-actions">
+                        <button type='button' className='btn primary login-action' disabled={context.state.loading} onClick={context.login}> {context.state.loading ? <div className='loader'></div> : 'Login'}</button>
+                        <a className="login-action" href="/forgotten-password">Forgot Password?</a>
+                    </div>
                 </form>
             </div>
         </section>

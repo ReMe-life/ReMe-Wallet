@@ -49,4 +49,16 @@ export class UserService {
     static async getClaimData (token: string): Promise<any> {
         return ReMePalClient.getClaimData(token)
     }
+
+    static async forgotPassword (email: string): Promise<void> {
+        return ReMePalClient.forgotPassword(email)
+    }
+
+    static async confirmReset (id: string, time: string, token: string, newPassword: string): Promise<void> {
+        return ReMePalClient.confirmReset(id, time, token, newPassword)
+    }
+
+    static async saveNewWallet (token: string, wallet: string): Promise<void> {
+        return ReMePalClient.saveNewWallet(token, wallet)
+    }
 }
