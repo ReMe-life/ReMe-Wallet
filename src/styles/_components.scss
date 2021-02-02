@@ -40,6 +40,15 @@
     }
 }
 
+.password-recovery-wrapper {
+  position: relative;
+  img {
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+  }
+}
 
 .login-actions{
   display: flex;

@@ -6,8 +6,6 @@ import { ErrorPopUp } from '../../errors'
 import { UserService, WalletService } from '../../../services'
 
 type State = {
-    password: string
-    mnemonic: string
     loading: boolean
     toggleShow: boolean
     recoveryPhrase: string
@@ -24,14 +22,13 @@ export class WalletRecovery extends Component<{ history: any }, State> {
         this.onPassword = this.onPassword.bind(this)
         this.onMnemonic = this.onMnemonic.bind(this)
         this.recover = this.recover.bind(this)
+        this.setToggle = this.setToggle.bind(this)
         this.showMnemonicBox = this.showMnemonicBox.bind(this)
         this.showPasswordBox = this.showPasswordBox.bind(this)
         this.initWalletFromPassword = this.initWalletFromPassword.bind(this)
         this.initWalletFromMnemonic = this.initWalletFromMnemonic.bind(this)
 
         this.state = {
-            password: '',
-            mnemonic: '',
             loading: false,
             toggleShow: false,
             recoveryPhrase: '',
@@ -82,6 +79,10 @@ export class WalletRecovery extends Component<{ history: any }, State> {
         this.setState({ recoveryPhrase: event.target.value })
     }
 
+    public setToggle () {
+        this.setState({ toggleShow: !this.state.toggleShow })
+    }
+
     public async recover () {
         try {
             this.setState({ loading: true })
@@ -100,7 +101,7 @@ export class WalletRecovery extends Component<{ history: any }, State> {
             this.setState({ loading: false })
 
             console.log(error)
-            ErrorPopUp.show('Resetting password failed')
+            ErrorPopUp.show('Invalid old pass provided')
         }
     }
 

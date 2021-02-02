@@ -7,7 +7,6 @@ import { UserService } from '../../../services'
 type State = {
     email: string
     loading: boolean
-    toggleShow: boolean
 }
 
 export class ForgottenPassword extends Component<{ history: any }, State> {
@@ -16,13 +15,11 @@ export class ForgottenPassword extends Component<{ history: any }, State> {
         super(props)
 
         this.onEmail = this.onEmail.bind(this)
-        this.setToggle = this.setToggle.bind(this)
         this.submitResetRequest = this.submitResetRequest.bind(this)
 
         this.state = {
             email: '',
-            loading: false,
-            toggleShow: false,
+            loading: false
         }
     }
 
@@ -32,10 +29,6 @@ export class ForgottenPassword extends Component<{ history: any }, State> {
 
     public onEmail (event: any) {
         this.setState({ email: event.target.value })
-    }
-
-    public setToggle () {
-        this.setState({ toggleShow: !this.state.toggleShow })
     }
 
     public async submitResetRequest () {
