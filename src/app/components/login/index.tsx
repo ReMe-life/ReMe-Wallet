@@ -70,6 +70,7 @@ class Login extends Component<{ history: any }, State> {
                     })
                 }
 
+                localStorage.setItem('allowed', 'true')
                 return this.props.history.push('/dashboard')
             }
 
@@ -96,6 +97,7 @@ class Login extends Component<{ history: any }, State> {
         const result = await UserService.register(this.state.email, this.state.password)
         localStorage.setItem('token', result.tokenData.token)
         localStorage.setItem('encToken', result.tokenData.encToken)
+        localStorage.setItem('allowed', 'true')
 
         this.props.history.push({
             pathname: '/mnemonic',

@@ -34,6 +34,8 @@ class Mnemonic extends Component<{ history: any }, State> {
             confirmedMnemonic: '',
             copiedOrDownloaded: false
         }
+
+        localStorage.removeItem('allowed')
     }
 
     public render (): ReactNode {
@@ -75,6 +77,7 @@ class Mnemonic extends Component<{ history: any }, State> {
             return ErrorPopUp.show('Entered mnemonic mismatch the original one')
         }
 
+        localStorage.setItem('allowed', 'true')
         this.props.history.push('/dashboard')
     }
 

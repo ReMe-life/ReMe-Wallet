@@ -95,13 +95,15 @@ export class WalletRecovery extends Component<{ history: any }, State> {
             user.wallet = await wallet.encrypt(this.props.history.location.state.newPassword)
 
             await UserService.saveNewWallet(token, user.wallet)
+
+            localStorage.setItem('allowed', 'true')
             this.props.history.push('/dashboard')
         }
         catch (error) {
             this.setState({ loading: false })
 
             console.log(error)
-            ErrorPopUp.show('Invalid old pass provided')
+            ErrorPopUp.show(`Invalid ${this.state.selectedRecoverMethod.toLowerCase()} provided`)
         }
     }
 
