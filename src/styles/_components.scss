@@ -52,7 +52,9 @@
 
 .login-actions{
   display: flex;
+  align-items: center;
   flex-direction: column;
+  justify-content: center;
 }
 
 .login-action{

@@ -36,6 +36,8 @@ export class ForgottenPassword extends Component<{ history: any }, State> {
             this.setState({ loading: true })
 
             await UserService.forgotPassword(this.state.email)
+            // That is an info
+            ErrorPopUp.show('We have sent you an email, check your inbox')
             this.props.history.push('/')
         }
         catch (error) {
