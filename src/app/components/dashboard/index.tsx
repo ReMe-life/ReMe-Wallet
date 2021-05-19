@@ -71,7 +71,7 @@ class Dashboard extends Component<{ history: any }, State> {
                 ethBalance,
                 tokensBalance,
                 referralCode: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
-                referralPlatformUserLink: `${process.env.REACT_APP_REMEPAL_PLATFORM}/${encToken}`,
+                referralPlatformUserLink: `${process.env.REACT_APP_REMEPAL_PLATFORM}?authtoken=${encodeURIComponent(encToken || '')}`,
                 claimTokens: user.claimTokens,
                 tokensForClaiming: user.tokensForClaiming
             })
