@@ -14,3 +14,10 @@ Navigate to http://localhost:3000/
 
 # Sign Up
 Navigate to http://localhost:3000/registration/<Your referral link here>
+
+# Production Deployment
+1. Clone the project locally
+2. Checkout to the staging branch
+2. Open the .env and replace accrodingly the values there
+5. Push the code changes made in .env file
+6. Check out the deployment - https://github.com/ReMe-life/ReMe-Wallet/actions
