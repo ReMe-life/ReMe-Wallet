@@ -98,9 +98,9 @@ class ClaimTransaction extends Component<{ history: any }, State> {
         } catch (error) {
             this.setState({ loading: false })
 
-            if (error.message.includes('Invalid Wallet')) {
-                return ErrorPopUp.show('Incorrect password')
-            }
+            // if (error.message.includes('Invalid Wallet')) {
+            //     return ErrorPopUp.show('Incorrect password')
+            // }
             ErrorPopUp.show('Claim failed!')
         }
     }

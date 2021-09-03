@@ -15,24 +15,9 @@ export const DashboardRender = function (context: any) {
                 </p>
             </div>
 
-            <dl className='referral-titles'>
-                <dt>Earn bonus ReMC tokens when you invite friends and family.</dt>
-                <dt>Just copy and share the link below.</dt>
-            </dl>
-            <div className='input-wrapper'>
-                <input type='text' value={context.state.referralCode} />
-                {context.state.copiedCode ?
-                    <img src={CopiedIcon} alt='Show/hide' /> :
-                    <img src={CopyIcon} alt='Show/hide' onClick={context.copyReferralCode} />
-                }
-            </div>
+           
 
-            <div className='referral-link-wrapper'>
-                <span className='message'>
-                    <strong>Visit the</strong>
-                </span>
-                <span className='underline' onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}><strong>ReMeLife Referral Program</strong></span>
-            </div>
+           
 
             <div className='wallet-title'>
                 <span className='message'>
@@ -42,10 +27,18 @@ export const DashboardRender = function (context: any) {
             </div>
 
             <div className='tokens-claimed-wrapper'>
-                <p className="one-flex-item">
-                    <div><strong>ReMC's claimed and available now</strong></div>
+                {/* <p className="one-flex-item">
+                    <div><strong>REMEs earned and available now:</strong></div>
                     <ul className='token-details'>
-                        <li><span>Available ReMCs</span><span className="tokens-total-amount">{context.state.tokensBalance.formatted}</span></li>
+                        <li><span>Available ReMStars</span><span className="tokens-total-amount">{context.state.tokensBalance.formatted}</span></li>
+                    </ul>
+                </p> */}
+                 <p className="one-flex-item">
+                    <div><strong>CAPs ready to be claimed from RRP:</strong></div>
+                    <ul className='token-details'>
+                        <li><span>CAPs from Registration</span>{(+context.state.claimTokens.signup).toFixed(2)}</li>
+                        <li><span>CAPs from Registration Referrals</span>{(+context.state.claimTokens.referral).toFixed(2)}</li>
+                        <li><span></span><span className="tokens-total-amount">{(+context.state.tokensForClaiming).toFixed(2)}</span></li>
                     </ul>
                 </p>
                 <p className="one-flex-item">
@@ -57,16 +50,45 @@ export const DashboardRender = function (context: any) {
             </div>
 
             <div className='tokens-for-claiming-wrapper'>
-                <p className="one-flex-item">
-                    <div><strong>ReMC's ready to be claimed:</strong></div>
+            <p className="one-flex-item">
+                    <div><strong>Caps converted to REMEs ready for use:</strong></div>
                     <ul className='token-details'>
-                        <li><span>SignUp bonus</span>{context.state.claimTokens.signup}</li>
-                        <li><span>From referrals</span>{context.state.claimTokens.referral}</li>
-                        <li><span></span><span className="tokens-total-amount">{context.state.tokensForClaiming}</span></li>
+                        <li><span>REMEs available now</span><span className="tokens-total-amount">{context.state.tokensBalance.formatted}</span></li>
                     </ul>
-                </p>
+                </p> 
+                {/* <p className="one-flex-item">
+                    <div><strong>REMEs ready to be claimeds:</strong></div>
+                    <ul className='token-details'>
+                        <li><span>Sign Up REMEs</span>{(+context.state.claimTokens.signup).toFixed(2)}</li>
+                        <li><span>From referrals</span>{(+context.state.claimTokens.referral).toFixed(2)}</li>
+                        <li><span></span><span className="tokens-total-amount">{(+context.state.tokensForClaiming).toFixed(2)}</span></li>
+                    </ul>
+                </p> */}
             </div>
 
+            <div className='wallet-title'>
+                <span className='message'>
+                    {`ReMeLife Referral Program${" "}(RRP)`}
+                </span>
+                <span className="line referrelLine"></span>
+            </div>
+            <div className='referral-link-wrapper'>
+                <span className='message'>
+                    <strong>Visit the</strong>
+                </span>
+                <span className='underline' onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}><strong>ReMeLife Referral Program</strong></span>
+            </div>
+            <dl className='referral-titles'>
+                <dt>Earn bonus REME tokens when you invite friends and family.</dt>
+                <dt>Just copy and share the link below.</dt>
+            </dl>
+            <div className='input-wrapper'>
+                <input type='text' value={context.state.referralCode} />
+                {context.state.copiedCode ?
+                    <img src={CopiedIcon} alt='Show/hide' /> :
+                    <img src={CopyIcon} alt='Show/hide' onClick={context.copyReferralCode} />
+                }
+            </div>
 
         </section>
     )

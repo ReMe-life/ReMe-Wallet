@@ -108,7 +108,7 @@ class Registration extends Component<{ history: any, match: any }, State> {
             this.setState({ loading: false })
 
             console.log(error)
-            ErrorPopUp.show(JSON.parse(error.message).message)
+            // ErrorPopUp.show(JSON.parse(error.message).message)
         }
     }
 

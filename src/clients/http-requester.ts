@@ -13,10 +13,10 @@ const executeRequest = async function (type: string, url: string, data: any, hea
     } catch (error) {
         const err = new Error()
 
-        err.message = error.message
-        if (error.response && error.response.data) {
-            err.message = JSON.stringify(error.response.data)
-        }
+        // err.message = error.message
+        // if (error.response && error.response.data) {
+        //     err.message = JSON.stringify(error.response.data)
+        // }
 
         throw err
     }
