@@ -11,6 +11,8 @@ export class ReMePalClient {
             }
         )
 
+        console.error("Hello")
+
         return result
     }
 
@@ -39,7 +41,7 @@ export class ReMePalClient {
     static async getUserDetails (token: string): Promise<any> {
         const result = await HTTPRequester.get(
             `${process.env.REACT_APP_REMEPAL_API}/user`,
-            { Authorization: `Bearer ${token}` }
+            { Authorization: `${token}` }
         )
 
         return result

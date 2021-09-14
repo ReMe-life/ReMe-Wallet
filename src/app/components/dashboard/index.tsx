@@ -65,6 +65,8 @@ class Dashboard extends Component<{ history: any }, State> {
             const ethBalance = await BalanceService.ethAmount(user.wallet.address)
             const tokensBalance = await BalanceService.tokensAmount(user.wallet.address)
 
+            alert(tokensBalance)
+
             this.setState({
                 email: user.email,
                 address: user.wallet.address,
@@ -78,6 +80,7 @@ class Dashboard extends Component<{ history: any }, State> {
         } catch (error) {
             console.log(error)
             clearLocalStorage(this.props.history)
+            console.log("Error in indextxs")
         }
     }
 
