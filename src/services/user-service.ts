@@ -30,9 +30,7 @@ export class UserService {
     static async getUserDetails (token: string): Promise<any> {
         const result = await ReMePalClient.getUserDetails(token)
         result.incomingTokens = formatAmount(result.incomingTokens)
-        console.log("line no 33")
 
-        console.log(result)
         result.tokensForClaiming = formatAmount(result.tokensForClaiming)
         result.claimTokens = {
             signup: formatAmount('0'),
