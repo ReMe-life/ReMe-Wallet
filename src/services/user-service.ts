@@ -29,18 +29,31 @@ export class UserService {
 
     static async getUserDetails (token: string): Promise<any> {
         const result = await ReMePalClient.getUserDetails(token)
+
+        console.log("incomingtokens -- before", result.incomingTokens.toString())
+        console.log("tokesnforclain totla -- before", +result.tokensForClaiming.toString() + +result.incomingTokens.toString())
+
+
+        const beforeClainTokesn = +result.tokensForClaiming.toString() + +result.incomingTokens.toString()
         result.incomingTokens = formatAmount(result.incomingTokens)
-        result.tokensForClaiming = formatAmount(result.tokensForClaiming)
+        console.log("line no 33")
+
+        console.log(result)
+
+        result.tokensForClaiming = formatAmount(beforeClainTokesn.toString())
+
         result.claimTokens = {
             signup: formatAmount('0'),
             referral: formatAmount('0')
         }
 
+
         if (new BigNumber(result.tokensForClaiming).gt(0)) {
             result.claimTokens.signup = new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(result.signupTokens) : formatAmount('0')
 
-            const bnTokensForClaiming = new BigNumber(result.tokensForClaiming)
-            result.claimTokens.referral = new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(bnTokensForClaiming.multipliedBy('1000000000000000000').minus(result.signupTokens).toString()) : result.tokensForClaiming
+            //const bnTokensForClaiming = new BigNumber(result.tokensForClaiming)
+            //result.claimTokens.referral = new BigNumber(result.earnedTokens.signup).eq(0) ? formatAmount(bnTokensForClaiming.multipliedBy('1000000000000000000').minus(result.signupTokens).toString()) : result.tokensForClaiming
+            result.claimTokens.referral = result.incomingTokens
         }
 
         return result
