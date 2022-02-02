@@ -58,6 +58,8 @@ class Dashboard extends Component<{ history: any }, State> {
         try {
             const token = localStorage.getItem('token') || ''
             const encToken = localStorage.getItem('encToken')
+            console.log('encToken getting from local')
+            console.log(encToken)
 
             const user = await UserService.getUserDetails(token)
             localStorage.setItem('user', JSON.stringify(user))

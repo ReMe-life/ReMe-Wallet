@@ -11,7 +11,7 @@
     }
 }
 
-// Login component 
+// Login component
 
 .login {
     form {
@@ -23,7 +23,7 @@
         margin: auto 15px 0;
     }
 
-    a { 
+    a {
       color: var(--primary500);
       font-weight: 700;
       text-decoration: none;
@@ -123,7 +123,7 @@ footer {
     justify-content: center;
     position: relative;
     width: 100%;
-    
+
     img {
         margin-right: 11px;
     }
@@ -158,6 +158,13 @@ footer {
       right: 50px;
       color: var(--primary200);
 
+      &:hover {
+        background: var(--footer-btn);;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 10px;
+      }
+
       img {
         margin-right: 9px;
       }
@@ -174,7 +181,7 @@ footer {
   color: var(--headings-primary);
 }
 
-// Profile 
+// Profile
 
 .profile-wrapper {
   position: absolute;
@@ -285,7 +292,7 @@ footer {
         margin: 0 14px 0 0;
       }
     }
-    
+
     .token-details {
       padding: 0;
       margin: 0;
@@ -324,18 +331,18 @@ footer {
       @include box-shadow(inset, 0, 8px, 22px, var(--primary-shadow));
       color: var(--primary400);
       font-size: 16px;
-  
+
       .message {
         float: left;
         margin-right: -7.5px;
         margin-bottom: 7px;
-  
+
         strong {
           color: var(--primary400);
           margin: 0 10px;
           font-size: 18px;
         }
-  
+
         &.success-message {
           color: var(--primary500);
         }
@@ -356,7 +363,7 @@ footer {
         }
 
       }
-  
+
     }
 
     input {
@@ -548,7 +555,7 @@ footer {
         margin-left: 3px;
       }
     }
-     
+
     .buttons-wrapper {
       display: flex;
       align-items: center;
@@ -561,7 +568,7 @@ footer {
   }
 }
 
-// registration 
+// registration
 
 .register {
   p {
@@ -570,7 +577,7 @@ footer {
     color: var(--paragraphs);
     max-width: 260px;
     margin: 5px 0;
-    a { 
+    a {
       color: var(--primary500);
       font-weight: 700;
       text-decoration: none;
