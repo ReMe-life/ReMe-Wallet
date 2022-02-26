@@ -6,6 +6,12 @@ export const DashboardRender = function (context: any) {
     return (
         <section className='home-wrapper'>
 
+            <div className='wallet-title'>
+                <span className='message'>
+                    Hi, {context.state.full_name}
+                </span>
+            </div>
+
             <div className='address-wrapper'>
                 <p>Your Wallet address &nbsp;&nbsp;&nbsp;<strong>{context.state.address}</strong>
                     {context.state.copiedWalletAddress ?
@@ -15,9 +21,9 @@ export const DashboardRender = function (context: any) {
                 </p>
             </div>
 
-           
 
-           
+
+
 
             <div className='wallet-title'>
                 <span className='message'>
@@ -55,7 +61,7 @@ export const DashboardRender = function (context: any) {
                     <ul className='token-details'>
                         <li><span>REMEs available now</span><span className="tokens-total-amount">{context.state.tokensBalance.formatted}</span></li>
                     </ul>
-                </p> 
+                </p>
                 {/* <p className="one-flex-item">
                     <div><strong>REMEs ready to be claimeds:</strong></div>
                     <ul className='token-details'>

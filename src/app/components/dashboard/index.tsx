@@ -21,6 +21,7 @@ type State = {
     copiedCode: boolean
     copiedWalletAddress: boolean
     txBroadcasted: boolean
+    full_name: string
 }
 
 class Dashboard extends Component<{ history: any }, State> {
@@ -50,7 +51,8 @@ class Dashboard extends Component<{ history: any }, State> {
             tokensForClaiming: '0.0000',
             copiedCode: false,
             copiedWalletAddress: false,
-            txBroadcasted
+            txBroadcasted,
+            full_name: ''
         }
     }
 
@@ -74,7 +76,8 @@ class Dashboard extends Component<{ history: any }, State> {
                 referralCode: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
                 referralPlatformUserLink: `${process.env.REACT_APP_REMEPAL_PLATFORM}?authtoken=${encodeURIComponent(encToken || '')}`,
                 claimTokens: user.claimTokens,
-                tokensForClaiming: user.tokensForClaiming
+                tokensForClaiming: user.tokensForClaiming,
+                full_name: user.full_name
             })
         } catch (error) {
             console.log(error)
@@ -91,7 +94,7 @@ class Dashboard extends Component<{ history: any }, State> {
                     {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
                         null :
                         <div className='claim'>
-                            <button className='btn primary' onClick={this.claim}>Claim now</button>
+                            <button className='btn primary' onClick={this.claim}>Claim Soon</button>
                         </div>
                     }
 
