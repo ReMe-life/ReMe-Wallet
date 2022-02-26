@@ -153,9 +153,10 @@ footer {
     .terms {
       display: flex;
       text-decoration: none;
-      position: absolute;
+      /*position: absolute;*/
       bottom: 20px;
       right: 50px;
+      padding: 20px;
       color: var(--primary200);
 
       &:hover {
