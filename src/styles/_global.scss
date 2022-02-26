@@ -1,3 +1,9 @@
+/*
+ Media query for mobile and desktop
+ */
+$small: 320px;
+$medium: 900px;
+
 body {
   margin: 0;
   padding: 0;
@@ -41,7 +47,7 @@ h2 {
 }
 
 input {
-  padding: 18px 18px;
+  padding: 18px 23px;
   outline: transparent;
   border: 1px solid var(--input-stroke);
   color: var(--input-color);
@@ -53,6 +59,12 @@ input {
   &:hover, &:active {
     border: 1px solid var(--input-stroke-hover);
     @include box-shadow(0, 6px, 12px, var(--input-shadow-hover));
+  }
+  @media screen and (max-width: $small) {
+    padding: 12px 12px;
+  }
+  @media screen and (min-width: $medium) {
+    padding: 18px 23px;
   }
 }
 
