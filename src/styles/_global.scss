@@ -52,6 +52,7 @@ input {
   border: 1px solid var(--input-stroke);
   color: var(--input-color);
   font-size: 16px;
+  width: 90%;
   @include rounded(4px);
   margin-bottom: 18px;
   @include box-shadow(0, 6px, 12px, var(--input-shadow));
@@ -60,8 +61,11 @@ input {
     border: 1px solid var(--input-stroke-hover);
     @include box-shadow(0, 6px, 12px, var(--input-shadow-hover));
   }
-  @media screen and (max-width: $small) {
-    padding: 12px 12px;
+  @media screen and (min-width: 200px) {
+    padding: 10px 10px;
+  }
+  @media screen and (max-width: 270px) {
+    padding: 10px 10px;
   }
   @media screen and (min-width: $medium) {
     padding: 18px 18px;
