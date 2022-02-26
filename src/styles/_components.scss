@@ -1,4 +1,9 @@
 // Title component
+/*
+ Media query for mobile and desktop
+ */
+$small: 320px;
+$medium: 900px;
 
 .title {
     display: flex;
@@ -38,6 +43,14 @@
             position: absolute;
             right: 20px;
             top: 20px;
+          @media screen and (max-width: $small) {
+            right: 16px;
+            top: 16px;
+          }
+          @media screen and (min-width: $medium) {
+            right: 20px;
+            top: 20px;
+          }
         }
     }
 }
