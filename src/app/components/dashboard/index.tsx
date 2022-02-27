@@ -7,19 +7,21 @@ import { DashboardRender } from './renderers'
 import { withoutAuth } from '../HOCs'
 import { clearLocalStorage } from '../helpers'
 
-import { ReMePalClient } from '../../../clients'
-import { BalanceService } from '../../../services'
+import { BalanceService, UserService } from '../../../services'
 
 type State = {
     email: string
     address: string
-    ethBalance: string
-    tokensBalance: string
-    referralLink: string
-    earnedTokens: any
-    incomingTokens: string
+    ethBalance: any
+    tokensBalance: any
+    referralCode: string
+    referralPlatformUserLink: string
+    claimTokens: any
     tokensForClaiming: string
     copiedCode: boolean
+    copiedWalletAddress: boolean
+    txBroadcasted: boolean
+    full_name: string
 }
 
 class Dashboard extends Component<{ history: any }, State> {
@@ -29,28 +31,40 @@ class Dashboard extends Component<{ history: any }, State> {
 
         this.claim = this.claim.bind(this)
         this.copyReferralCode = this.copyReferralCode.bind(this)
+        this.copyWalletAddress = this.copyWalletAddress.bind(this)
+
+        const txBroadcasted = this.props.history.location.state && this.props.history.location.state.txBroadcasted
+        if (txBroadcasted) {
+            let state = { ...this.props.history.location.state };
+            delete state.txBroadcasted;
+            this.props.history.replace({ ...this.props.history.location, state });
+        }
 
         this.state = {
             email: '',
             address: '',
-            ethBalance: '0',
-            tokensBalance: '0',
-            referralLink: '',
-            earnedTokens: {},
-            incomingTokens: '0',
-            tokensForClaiming: '0',
-            copiedCode: false
+            ethBalance: {},
+            tokensBalance: {},
+            referralCode: '',
+            referralPlatformUserLink: '',
+            claimTokens: {},
+            tokensForClaiming: '0.0000',
+            copiedCode: false,
+            copiedWalletAddress: false,
+            txBroadcasted,
+            full_name: ''
         }
     }
 
     public async componentDidMount () {
         try {
-            // @ts-ignore
-            const token = localStorage.getItem('token')
-            // @ts-ignore
-            const user = await ReMePalClient.getUserDetails(token)
-            localStorage.setItem('user', JSON.stringify(user))
+            const token = localStorage.getItem('token') || ''
+            const encToken = localStorage.getItem('encToken')
+            console.log('encToken getting from local')
+            console.log(encToken)
 
+            const user = await UserService.getUserDetails(token)
+            localStorage.setItem('user', JSON.stringify(user))
             const ethBalance = await BalanceService.ethAmount(user.wallet.address)
             const tokensBalance = await BalanceService.tokensAmount(user.wallet.address)
 
@@ -59,10 +73,11 @@ class Dashboard extends Component<{ history: any }, State> {
                 address: user.wallet.address,
                 ethBalance,
                 tokensBalance,
-                referralLink: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
-                earnedTokens: user.earnedTokens,
-                incomingTokens: user.incomingTokens,
-                tokensForClaiming: user.tokensForClaiming
+                referralCode: `${window.location.protocol}//${window.location.host}/registration/${user.referralLink}`,
+                referralPlatformUserLink: `${process.env.REACT_APP_REMEPAL_PLATFORM}?authtoken=${encodeURIComponent(encToken || '')}`,
+                claimTokens: user.claimTokens,
+                tokensForClaiming: user.tokensForClaiming,
+                full_name: user.full_name
             })
         } catch (error) {
             console.log(error)
@@ -74,22 +89,18 @@ class Dashboard extends Component<{ history: any }, State> {
         return (
             <section className='wrapper homepage'>
                 <Logout history={this.props.history} email={this.state.email} />
-                <h2>Your home page</h2>
                 <div className='common-wrapper'>
                     {DashboardRender(this)}
-                    {this.state.tokensForClaiming === '0' ?
+                    {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
                         null :
                         <div className='claim'>
-                            <div className='message'>You've got <strong>ReMC {this.state.tokensForClaiming}</strong> ready to be claimed.</div>
-                            <button className='btn primary' onClick={this.claim}>Claim now</button>
+                            <button className='btn primary' onClick={this.claim} disabled={true}>COMING SOON</button>
                         </div>
                     }
 
-                    {this.props.history.location &&
-                        this.props.history.location.state &&
-                        this.props.history.location.state.txBroadcasted ?
+                    {this.state.txBroadcasted ?
                         <div className='claim'>
-                            <div className='success-message'>Thank you for claiming your tokens. Your transaction is being processed</div>
+                            <div className='message'>Your transaction is being processed</div>
                         </div>
                         : null
                     }
@@ -103,13 +114,18 @@ class Dashboard extends Component<{ history: any }, State> {
         this.props.history.push({
             pathname: '/claim',
             state: {
-                ethBalance: this.state.ethBalance
+                ethBalance: this.state.ethBalance.pure
             }
         })
     }
 
+    public copyWalletAddress () {
+        copy(this.state.address)
+        this.setState({ copiedWalletAddress: true })
+    }
+
     public copyReferralCode () {
-        copy(this.state.referralLink)
+        copy(this.state.referralCode)
         this.setState({ copiedCode: true })
     }
 }

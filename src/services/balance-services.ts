@@ -1,6 +1,7 @@
 import * as ethers from 'ethers';
-import BLOCKCHAIN_CONFIG from './../config/blockchain-config.json';
 import tokenContractAbi from './../app/assets/abis/IERC20.json'
+
+import { formatAmount } from './../utils'
 
 class BalanceService {
 
@@ -9,8 +10,8 @@ class BalanceService {
     private tokenContract: any;
 
     private constructor () {
-        this.provider = new ethers.providers.InfuraProvider(BLOCKCHAIN_CONFIG.network)
-        this.tokenContract = new ethers.Contract(BLOCKCHAIN_CONFIG.tokenAddress, tokenContractAbi.abi, this.provider)
+        this.provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_BLOCKCHAIN_NETWORK)
+        this.tokenContract = new ethers.Contract(process.env.REACT_APP_TOKEN_CONTRACT || '', tokenContractAbi.abi, this.provider)
     }
 
     static getInstance () {
@@ -20,26 +21,20 @@ class BalanceService {
         return BalanceService.instance
     }
 
-    public async ethAmount (accountAddress: string): Promise<string> {
+    public async ethAmount (accountAddress: string): Promise<any> {
         const ethAmount = await this.provider.getBalance(accountAddress);
-        return this.formatAmount(ethAmount.toString())
-    }
-
-    public async tokensAmount (accountAddress: string): Promise<string> {
-        const tokensAmount = await this.tokenContract.balanceOf(accountAddress);
-        return this.formatAmount(tokensAmount.toString())
-    }
-
-    private formatAmount (amount: string): string {
-        if (amount.length <= 1) {
-            return amount
+        return {
+            pure: ethAmount.toString(),
+            formatted: formatAmount(ethAmount.toString())
         }
+    }
 
-        const formattedAmount = amount.padStart(19, '0')
-        const fractionPart = formattedAmount.substr(formattedAmount.length - 18).substr(0, 4)
-        const intPart = formattedAmount.substr(0, formattedAmount.length - 18)
-
-        return `${intPart}.${fractionPart}`
+    public async tokensAmount (accountAddress: string): Promise<any> {
+        const tokensAmount = await this.tokenContract.balanceOf(accountAddress);
+        return {
+            pure: tokensAmount.toString(),
+            formatted: formatAmount(tokensAmount.toString())
+        }
     }
 }
 

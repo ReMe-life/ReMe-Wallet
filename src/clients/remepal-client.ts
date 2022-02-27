@@ -11,7 +11,8 @@ export class ReMePalClient {
             }
         )
 
-        return result.token
+
+        return result
     }
 
     static async registerByReferral (details: any, wallet: any, referredBy: string): Promise<any> {
@@ -24,7 +25,7 @@ export class ReMePalClient {
             }
         )
 
-        return result.token
+        return result
     }
 
     static async login (email: string, password: string): Promise<any> {
@@ -33,7 +34,7 @@ export class ReMePalClient {
             { email, password }
         )
 
-        return result.token
+        return result
     }
 
     static async getUserDetails (token: string): Promise<any> {
@@ -52,5 +53,27 @@ export class ReMePalClient {
         )
 
         return result
+    }
+
+    static async forgotPassword (email: string): Promise<void> {
+        await HTTPRequester.post(
+            `${process.env.REACT_APP_REMEPAL_API}/auth/reset`,
+            { email }
+        )
+    }
+
+    static async confirmReset (id: string, time: string, token: string, newPassword: string): Promise<void> {
+        await HTTPRequester.post(
+            `${process.env.REACT_APP_REMEPAL_API}/auth/reset/confirm`,
+            { id, time: Number(time), token, password: newPassword }
+        )
+    }
+
+    static async saveNewWallet (token: string, wallet: string): Promise<void> {
+        await HTTPRequester.put(
+            `${process.env.REACT_APP_REMEPAL_API}/user/wallet`,
+            { wallet },
+            { Authorization: `Bearer ${token}` }
+        )
     }
 }

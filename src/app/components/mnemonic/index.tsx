@@ -12,6 +12,7 @@ type State = {
     copiedMnemonic: boolean
     originalMnemonic: string
     confirmedMnemonic: string
+    copiedOrDownloaded: boolean
 }
 
 class Mnemonic extends Component<{ history: any }, State> {
@@ -29,16 +30,18 @@ class Mnemonic extends Component<{ history: any }, State> {
         this.state = {
             render: 'mnemonic',
             copiedMnemonic: false,
-            // @ts-ignore
             originalMnemonic: this.props.history.location.state.mnemonic.phrase,
-            confirmedMnemonic: ''
+            confirmedMnemonic: '',
+            copiedOrDownloaded: false
         }
+
+        localStorage.removeItem('allowed')
     }
 
     public render (): ReactNode {
         return (
             <section className='wrapper mnemonic'>
-                <h2>Your account</h2>
+                <h2>Setting up your wallet</h2>
                 <div className='common-wrapper'>
                     {MnemonicRender(this)}
                 </div>
@@ -48,12 +51,13 @@ class Mnemonic extends Component<{ history: any }, State> {
 
     public copyMnemonic () {
         copy(this.state.originalMnemonic)
-        this.setState({ copiedMnemonic: true })
+        this.setState({ copiedMnemonic: true, copiedOrDownloaded: true })
     }
 
     public downloadMnemonic () {
-        var data = new Blob([this.state.originalMnemonic], { type: 'text/plain;charset=utf-8' });
+        const data = new Blob([this.state.originalMnemonic], { type: 'text/plain;charset=utf-8' });
         saveAs(data, 'mnemonic.txt');
+        this.setState({ copiedOrDownloaded: true })
     }
 
     public confirmMnemonic () {
@@ -73,6 +77,7 @@ class Mnemonic extends Component<{ history: any }, State> {
             return ErrorPopUp.show('Entered mnemonic mismatch the original one')
         }
 
+        localStorage.setItem('allowed', 'true')
         this.props.history.push('/dashboard')
     }
 

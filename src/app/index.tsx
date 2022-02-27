@@ -9,8 +9,11 @@ import {
 	Footer,
 	Dashboard,
 	Mnemonic,
+	NewPassword,
+	WalletRecovery,
 	ClaimTransaction,
-	InsuffitientBalance
+	ForgottenPassword,
+	InsufficientBalance
 } from './components'
 
 type State = {
@@ -35,7 +38,10 @@ export class App extends Component<{}, State> {
 					<Route exact path='/dashboard' component={Dashboard} />
 					<Route exact path='/mnemonic' component={Mnemonic} />
 					<Route exact path='/claim' component={ClaimTransaction} />
-					<Route exact path='/insufficient-balance' component={InsuffitientBalance} />
+					<Route exact path='/insufficient-balance' component={InsufficientBalance} />
+					<Route exact path='/forgotten-password' component={ForgottenPassword} />
+					<Route path='/new-password/:id/:time/:token' component={NewPassword} />
+					<Route exact path='/wallet-recovery' component={WalletRecovery} />
 				</Router>
 				<Footer />
 			</div>

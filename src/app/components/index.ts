@@ -6,7 +6,11 @@ import Mnemonic from './mnemonic'
 import Dashboard from './dashboard'
 import Registration from './registration'
 import ClaimTransaction from './claim-transaction'
-import InsuffitientBalance from './insufficient-balance'
+import InsufficientBalance from './insufficient-balance'
+
+import { NewPassword } from './new-password'
+import { WalletRecovery } from './recover-wallet'
+import { ForgottenPassword } from './forgotten-password'
 
 export {
     Login,
@@ -14,7 +18,10 @@ export {
     Footer,
     Mnemonic,
     Dashboard,
+    NewPassword,
     Registration,
+    WalletRecovery,
     ClaimTransaction,
-    InsuffitientBalance
+    ForgottenPassword,
+    InsufficientBalance
 }

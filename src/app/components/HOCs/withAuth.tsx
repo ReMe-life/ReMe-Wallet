@@ -34,6 +34,5 @@ export const withoutAuth = (authUrl: string, Component: any, componentUrl: strin
 }
 
 const hasBeenAuthenticated = () => {
-    return !!localStorage.getItem('token')
+    return !!localStorage.getItem('token') && !!localStorage.getItem('allowed')
 }
-
