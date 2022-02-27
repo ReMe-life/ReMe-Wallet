@@ -33,7 +33,6 @@ export class App extends Component<{}, State> {
 		return (
 			<div className='application'>
 				<Title />
-				<Caption />
 				<Router>
 					<Route exact path="/" component={Login} />
 					<Route path="/registration/:referredBy" component={Registration} />
