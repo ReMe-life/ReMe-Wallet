@@ -51,6 +51,11 @@ $medium: 900px;
             right: 20px;
             top: 20px;
           }
+
+          @media screen and (min-width: 200px) {
+            right: 14px;
+            top: 14px;
+          }
         }
     }
 }
@@ -612,4 +617,11 @@ footer {
   font-size: 16px;
   padding-bottom: 15px;
   padding-left: -23px;
+}
+
+.caption {
+  color:white;
+  max-width: 50px;
+  margin: auto;
+  align-items: center;
 }

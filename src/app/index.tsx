@@ -15,6 +15,7 @@ import {
 	ForgottenPassword,
 	InsufficientBalance
 } from './components'
+import {Caption} from "./components/caption/caption";
 
 type State = {
 	component: any
@@ -32,6 +33,7 @@ export class App extends Component<{}, State> {
 		return (
 			<div className='application'>
 				<Title />
+				<Caption />
 				<Router>
 					<Route exact path="/" component={Login} />
 					<Route path="/registration/:referredBy" component={Registration} />
