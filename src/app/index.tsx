@@ -15,7 +15,6 @@ import {
 	ForgottenPassword,
 	InsufficientBalance
 } from './components'
-import {Caption} from "./components/caption/caption";
 
 type State = {
 	component: any
