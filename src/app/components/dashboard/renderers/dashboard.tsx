@@ -6,7 +6,6 @@ import {Caption} from "../../caption/caption";
 export const DashboardRender = function (context: any) {
     return (
         <>
-            <Caption />
             <section className='home-wrapper'>
 
                 <div className='wallet-title'>
@@ -89,7 +88,9 @@ export const DashboardRender = function (context: any) {
                 </div>
                 <dl className='referral-titles'>
                     <dt>Earn bonus REME tokens when you invite friends and family.</dt>
-                    <dt>Just copy and share the link below.</dt>
+                    <dt>Just copy and share the link below, in an email something like
+                        <a href={'https://healthconnected.agilecrm.com/forms/6713543266729984'}>this</a>.
+                    </dt>
                 </dl>
                 <div className='input-wrapper'>
                     <input type='text' value={context.state.referralCode} />
