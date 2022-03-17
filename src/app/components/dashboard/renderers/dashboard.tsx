@@ -1,7 +1,6 @@
 import React from 'react'
 import CopyIcon from '../../../assets/svg/copy.svg'
 import CopiedIcon from '../../../assets/svg/copied.svg'
-import {Caption} from "../../caption/caption";
 
 export const DashboardRender = function (context: any) {
     return (
@@ -89,7 +88,7 @@ export const DashboardRender = function (context: any) {
                 <dl className='referral-titles'>
                     <dt>Earn bonus REME tokens when you invite friends and family.</dt>
                     <dt>Just copy and share the link below, in an email something like
-                        <a href={'https://healthconnected.agilecrm.com/forms/6713543266729984'}>this</a>.
+                        <a href={'https://healthconnected.agilecrm.com/forms/6713543266729984'} target={'_blank'}>this</a>.
                     </dt>
                 </dl>
                 <div className='input-wrapper'>
