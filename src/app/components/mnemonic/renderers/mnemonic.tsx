@@ -61,7 +61,7 @@ const mnemonicConfirm = function (context: any) {
                         <input size={30} placeholder='mnemonic code' type='text' className='form-control input' onChange={context.onMnemonicInput} />
                         <button type="button" className="btn primary" onClick={context.confirmSavedMnemonic}>Continue</button>
                         <a onClick={context.viewMnemonic} className="btn secondary green"> &lt; Go back to copy again</a>
-                        <a href="#" className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Do
+                        <a href="javascript:;" className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Do
                         you need help?</a>
                         </form>
                 </div>

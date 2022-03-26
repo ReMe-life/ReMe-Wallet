@@ -18,16 +18,16 @@ export const DashboardRender = function (context: any) {
                         <div className="top-header">
                             <div className="title"><h1><img src={Logo} alt="ReMe Wallet" /></h1></div>
                             <div className="nav-icon-box">
-                                <a href="#" className="btn secondary green">Need help?</a>
+                                <a href="javascript:;" className="btn secondary green">Need help?</a>
                                 <Logout history={context.props.history} email={context.state.email} />
                                 <img className="nav-icon"
                                      src={NavIcon}/>
                                 <img className="nav-icon-cross" src={NavIconCross}/>
                                 <div className="top-menu">
                                     <ul>
-                                        <li><a href="#">Need help?</a></li>
-                                        <li><a href="#">ReMeLife</a></li>
-                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="javascript:;">Need help?</a></li>
+                                        <li><a href="javascript:;">ReMeLife</a></li>
+                                        <li><a href="javascript:;">Terms & Conditions</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@ export const DashboardRender = function (context: any) {
 
                         <div className="rrp-section login">
                             <h3>ReMeLife Referral Program (RRP)</h3>
-                            <a href="#" className="btn secondary green">Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>ReMeLife Referral Program</span>
+                            <a href="javascript:;" className="btn secondary green">Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>ReMeLife Referral Program</span>
                                 <span className="mob">RRP</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.
                                 Just copy and share the link below, in an email something <a href={'https://healthconnected.agilecrm.com/forms/6713543266729984'} target={'_blank'} rel="noreferrer">like this.</a></p>
