@@ -16,12 +16,12 @@ export const DashboardRender = function (context: any) {
                 <section className="wrapper homepage">
                     <div className="common-wrapper">
                         <div className="top-header">
-                            <div className="title"><h1><img src={Logo} alt="ReMe Wallet" /></h1></div>
+                            <div className="title"><h1><img src={Logo} alt={'RemeLife'}/></h1></div>
                             <div className="nav-icon-box">
                                 <a href="javascript:;" className="btn secondary green">Need help?</a>
                                 <Logout history={context.props.history} email={context.state.email} />
                                 <img className="nav-icon"
-                                     src={NavIcon}/>
+                                     src={NavIcon} alt={'RemeLife'}/>
                                 <img className="nav-icon-cross" src={NavIconCross}/>
                                 <div className="top-menu">
                                     <ul>
@@ -67,14 +67,14 @@ export const DashboardRender = function (context: any) {
 
                             <div className="tokens-claimed-wrapper wrapper-with-icons">
                                 <div className="one-flex-item gray">
-                                    <img className="top-over" src={TopOver}/>
+                                    <img className="top-over" src={TopOver} alt={'RemeLife'}/>
                                     <div><strong>Caps converted to REMEs ready for use:</strong></div>
                                     <ul className="token-details">
                                         <li><span>REMEs available now</span><strong>{context.state.tokensBalance.formatted}</strong></li>
                                     </ul>
                                 </div>
                                 <div className="one-flex-item purple">
-                                    <img className="top-over" src={EthPng}/>
+                                    <img className="top-over" src={EthPng} alt={'RemeLife'}/>
                                     <div><strong>Your ETH balance:</strong></div>
                                     <ul className="token-details">
                                         <li><span>Available ETH</span> <strong>{context.state.ethBalance.formatted}</strong></li>
