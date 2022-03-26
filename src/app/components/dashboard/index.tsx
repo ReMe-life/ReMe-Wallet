@@ -89,10 +89,10 @@ class Dashboard extends Component<{ history: any }, State> {
             <>
                 {DashboardRender(this)}
                 {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
-                    null :
-                    <div className='claim'>
+                    null : ""
+                    /*<div className='claim'>
                         <button className='btn primary' onClick={this.claim} disabled={true}>COMING SOON</button>
-                    </div>
+                    </div>*/
                 }
 
                 {this.state.txBroadcasted ?

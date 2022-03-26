@@ -55,11 +55,12 @@ export const DashboardRender = function (context: any) {
                                     </ul>
                                 </div>
                                 <div className="one-flex-item">
+                                    <div><strong>Value ready to be claimed from RRP:</strong></div>
                                     <ul className="token-details">
-                                        <li><span>Today’s CAPSs to REMEs Conversion rate</span> 0.00</li>
-                                        <li><span>Total REMEs earned</span> 0.00</li>
-                                        <li><span>REMEs exchange launch price</span> 0.00</li>
-                                        <li><span>Total value of your REMEs today</span> 0.00</li>
+                                        <li><span>Today’s CAPSs to REMEs Conversion rate</span>6.028</li>
+                                        <li><span>Total REMEs earned</span>{+(context.state.tokensForClaiming/6.028).toFixed(2)}</li>
+                                        <li><span>REMEs exchange launch price</span> £0.10</li>
+                                        <li><span>Total value of your REMEs today</span>£&nbsp;{+((context.state.tokensForClaiming/6.028)*0.10).toFixed(2)}</li>
                                     </ul>
                                 </div>
                             </div>
