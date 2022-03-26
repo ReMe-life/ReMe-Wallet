@@ -1,7 +1,6 @@
 import copy from 'copy-to-clipboard';
 import React, { Component, ReactNode } from 'react'
 
-import { Logout } from '../logout'
 import { DashboardRender } from './renderers'
 
 import { withoutAuth } from '../HOCs'
