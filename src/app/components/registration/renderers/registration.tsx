@@ -25,13 +25,17 @@ export const RegistrationRender = function (context: any) {
                             <input size={30} placeholder='Re enter password' type={context.state.reToggleShow ? 'text' : 'password'} value={context.state.repassword} className='form-control input' onChange={context.onRePassword} />
                             <img src={PasswordToggle} alt='Show/hide re password' onClick={context.setReToggle} />
                         </div>
-                        <p>By registering you agree with the <div className='terms-and-conditions' onClick={() => { window.open('https://remelife.com/terms-and-conditions/') }}>Terms of Service/Conditions</div></p>
+                        <p>By registering you agree with the
+                            <div className='terms-and-conditions'>
+                                <button onClick={() => { window.open('https://remelife.com/terms-and-conditions/') }}> Terms of Service/Conditions</button>
+                        </div>
+                        </p>
                         <button type='button' className='btn primary' disabled={context.state.loading} onClick={context.register}> {context.state.loading ? <div className='loader'></div> : 'Register'}</button>
                     </form>
                 </div>
                 <div className="terms-links">
                     <a href="https://remelife.com/" target="_blank"
-                       rel="noreferrer">ReMeLife</a> | <a
+                       rel="noreferrer">ReMeLife</a> | <a href={"https://remelife.com/terms-and-conditions/"}
                     onClick={() => { window.open('https://remelife.com/terms-and-conditions/') }} target="_blank" rel="noreferrer">Terms &
                     Conditions</a>
                 </div>

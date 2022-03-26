@@ -41,10 +41,10 @@ const mnemonic = function (context: any) {
                             After you have saved it, click the button below to continue.
                         </p>
                         <button className='btn primary' disabled={!context.state.copiedOrDownloaded} onClick={context.confirmMnemonic}>I have saved my code</button>
-                        <a href="#" className="btn secondary green">Do you need help?</a></form>
+                        <a href="https://remelife.com/token-wallet-explanation/" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }} className="btn secondary green">Do you need help?</a></form>
                 </div>
-                <div className="terms-links"><a href="https://remelife.com/" target="_blank">ReMeLife</a> | <a
-                    href="https://remelife.com/terms-and-conditions/" target="_blank">Terms & Conditions</a></div>
+                <div className="terms-links"><a href="https://remelife.com/" target="_blank" rel="noreferrer">ReMeLife</a> | <a
+                    href="https://remelife.com/terms-and-conditions/" target="_blank" rel="noreferrer">Terms & Conditions</a></div>
             </section>
         </div>
     )
@@ -60,13 +60,13 @@ const mnemonicConfirm = function (context: any) {
                     <form className="form-inline center">
                         <input size={30} placeholder='mnemonic code' type='text' className='form-control input' onChange={context.onMnemonicInput} />
                         <button type="button" className="btn primary" onClick={context.confirmSavedMnemonic}>Continue</button>
-                        <a onClick={context.viewMnemonic} className="btn secondary green"> &lt; Go back to copy again</a>
-                        <a href="javascript:;" className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Do
+                        <a href={context.viewMnemonic} onClick={context.viewMnemonic} className="btn secondary green"> &lt; Go back to copy again</a>
+                        <a href={'https://remelife.com/token-wallet-explanation/'} className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Do
                         you need help?</a>
                         </form>
                 </div>
-                <div className="terms-links"><a href="https://remelife.com/" target="_blank">ReMeLife</a> | <a
-                    href="https://remelife.com/terms-and-conditions/" target="_blank">Terms & Conditions</a></div>
+                <div className="terms-links"><a href="https://remelife.com/" target="_blank" rel="noreferrer">ReMeLife</a> | <a
+                    href="https://remelife.com/terms-and-conditions/" target="_blank" rel="noreferrer">Terms & Conditions</a></div>
             </section>
         </div>
     )

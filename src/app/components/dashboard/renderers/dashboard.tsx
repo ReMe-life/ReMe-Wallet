@@ -18,16 +18,16 @@ export const DashboardRender = function (context: any) {
                         <div className="top-header">
                             <div className="title"><h1><img src={Logo} alt={'RemeLife'}/></h1></div>
                             <div className="nav-icon-box">
-                                <a href="javascript:;" className="btn secondary green">Need help?</a>
+                                <a href={'https://remelife.com/token-wallet-explanation/'} className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Need help?</a>
                                 <Logout history={context.props.history} email={context.state.email} />
                                 <img className="nav-icon"
                                      src={NavIcon} alt={'RemeLife'}/>
-                                <img className="nav-icon-cross" src={NavIconCross}/>
+                                <img className="nav-icon-cross" src={NavIconCross} alt={"Reme"}/>
                                 <div className="top-menu">
                                     <ul>
-                                        <li><a href="javascript:;">Need help?</a></li>
-                                        <li><a href="javascript:;">ReMeLife</a></li>
-                                        <li><a href="javascript:;">Terms & Conditions</a></li>
+                                        <li><a href="https://remelife.com/token-wallet-explanation/">Need help?</a></li>
+                                        <li><a href="https://remelife.com/">ReMeLife</a></li>
+                                        <li><a href="https://remelife.com/terms-and-conditions/">Terms & Conditions</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@ export const DashboardRender = function (context: any) {
 
                         <div className="rrp-section login">
                             <h3>ReMeLife Referral Program (RRP)</h3>
-                            <a href="javascript:;" className="btn secondary green">Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>ReMeLife Referral Program</span>
+                            <a href={context.state.referralPlatformUserLink} className="btn secondary green">Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>ReMeLife Referral Program</span>
                                 <span className="mob">RRP</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.
                                 Just copy and share the link below, in an email something <a href={'https://healthconnected.agilecrm.com/forms/6713543266729984'} target={'_blank'} rel="noreferrer">like this.</a></p>
@@ -101,8 +101,11 @@ export const DashboardRender = function (context: any) {
                         </div>
 
                     </div>
-                    <div className="terms-links"><a href="https://remelife.com/" target="_blank">ReMeLife</a> | <a
-                        href="https://remelife.com/terms-and-conditions/" target="_blank">Terms & Conditions</a></div>
+                    <div className="terms-links">
+                        <a href="https://remelife.com/" target="_blank"
+                           rel="noreferrer">ReMeLife</a> | <a href={"https://remelife.com/terms-and-conditions/"}
+                        onClick={() => { window.open('https://remelife.com/terms-and-conditions/') }} target="_blank" rel="noreferrer">Terms &
+                        Conditions</a></div>
 
                 </section>
             </div>
