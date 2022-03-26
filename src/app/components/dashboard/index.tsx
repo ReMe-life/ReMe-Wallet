@@ -87,26 +87,22 @@ class Dashboard extends Component<{ history: any }, State> {
 
     public render (): ReactNode {
         return (
-            <section className='wrapper homepage'>
-                <Logout history={this.props.history} email={this.state.email} />
-                <div className='common-wrapper'>
-                    {DashboardRender(this)}
-                    {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
-                        null :
-                        <div className='claim'>
-                            <button className='btn primary' onClick={this.claim} disabled={true}>COMING SOON</button>
-                        </div>
-                    }
+            <>
+                {DashboardRender(this)}
+                {this.state.tokensForClaiming === '0.0000' || this.state.txBroadcasted ?
+                    null :
+                    <div className='claim'>
+                        <button className='btn primary' onClick={this.claim} disabled={true}>COMING SOON</button>
+                    </div>
+                }
 
-                    {this.state.txBroadcasted ?
-                        <div className='claim'>
-                            <div className='message'>Your transaction is being processed</div>
-                        </div>
-                        : null
-                    }
-
-                </div>
-            </section>
+                {this.state.txBroadcasted ?
+                    <div className='claim'>
+                        <div className='message'>Your transaction is being processed</div>
+                    </div>
+                    : null
+                }
+                </>
         )
     }
 

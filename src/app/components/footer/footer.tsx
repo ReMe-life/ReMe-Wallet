@@ -10,8 +10,8 @@ export const Footer = function (context: any) {
             <div className='btn' onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Do you need help?</div>
             <div className='terms' onClick={() => { window.open('https://remelife.com/terms-and-conditions/') }}>
                 <img alt='Term and conditions' src={TermsIcon} />
-            Terms and Conditions
-        </div>
+                Terms and Conditions
+            </div>
         </footer>
     )
 }

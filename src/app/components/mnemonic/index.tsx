@@ -40,12 +40,9 @@ class Mnemonic extends Component<{ history: any }, State> {
 
     public render (): ReactNode {
         return (
-            <section className='wrapper mnemonic'>
-                <h2>Setting up your wallet</h2>
-                <div className='common-wrapper'>
-                    {MnemonicRender(this)}
-                </div>
-            </section>
+            <div >
+                {MnemonicRender(this)}
+            </div>
         )
     }
 
