@@ -7,7 +7,6 @@ import { withoutAuth } from '../HOCs'
 import { clearLocalStorage } from '../helpers'
 
 import { BalanceService, UserService } from '../../../services'
-import $ from 'jquery'
 
 
 
