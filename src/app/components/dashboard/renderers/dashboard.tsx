@@ -20,10 +20,10 @@ export const DashboardRender = function (context: any) {
                             <div className="nav-icon-box">
                                 <a href={'https://remelife.com/token-wallet-explanation/'} className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Need help?</a>
                                 <Logout history={context.props.history} email={context.state.email} />
-                                <img className="nav-icon"
+                                <img className="nav-icon" id="nav-icon-click"
                                      src={NavIcon} alt={'RemeLife'}/>
                                 <img className="nav-icon-cross" src={NavIconCross} alt={"Reme"}/>
-                                <div className="top-menu">
+                                <div className="top-menu" id="main-menu">
                                     <ul>
                                         <li><a href="https://remelife.com/token-wallet-explanation/">Need help?</a></li>
                                         <li><a href="https://remelife.com/">ReMeLife</a></li>

@@ -7,6 +7,9 @@ import { withoutAuth } from '../HOCs'
 import { clearLocalStorage } from '../helpers'
 
 import { BalanceService, UserService } from '../../../services'
+import $ from 'jquery'
+
+
 
 type State = {
     email: string
@@ -82,6 +85,11 @@ class Dashboard extends Component<{ history: any }, State> {
             console.log(error)
             clearLocalStorage(this.props.history)
         }
+
+        const script = document.createElement("script");
+        script.src = "http://localhost:3000/menu.js";
+        script.async = true;
+        document.body.appendChild(script);
     }
 
     public render (): ReactNode {
