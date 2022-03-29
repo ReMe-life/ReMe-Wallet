@@ -86,7 +86,7 @@ class Dashboard extends Component<{ history: any }, State> {
         }
 
         const script = document.createElement("script");
-        script.src = "http://localhost:3000/menu.js";
+        script.src = "https://wallet.remelife.com/menu.js";
         script.async = true;
         document.body.appendChild(script);
     }
