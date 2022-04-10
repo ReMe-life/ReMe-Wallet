@@ -80,7 +80,7 @@ class Login extends Component<{ history: any }, State> {
             this.setState({ loading: false })
 
             console.log(error)
-            ErrorPopUp.show('Invalid email or password')
+            ErrorPopUp.show('Invalid email or password. Ensure that you do not have a blank space at the end of the email address or a capital within it.')
         }
     }
 

@@ -41,7 +41,7 @@ const mnemonic = function (context: any) {
                             After you have saved it, click the button below to continue.
                         </p>
                         <button className='btn primary' disabled={!context.state.copiedOrDownloaded} onClick={context.confirmMnemonic}>I have saved my code</button>
-                        <a href="https://remelife.com/token-wallet-explanation/" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }} className="btn secondary green">Do you need help?</a></form>
+                        <a href="https://remelife.com/token-wallet-explanation/" target='_blank' rel="noreferrer" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }} className="btn secondary green">Do you need help?</a></form>
                 </div>
                 <div className="terms-links"><a href="https://remelife.com/" target="_blank" rel="noreferrer">ReMeLife</a> | <a
                     href="https://remelife.com/terms-and-conditions/" target="_blank" rel="noreferrer">Terms & Conditions</a></div>

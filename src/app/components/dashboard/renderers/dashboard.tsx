@@ -48,7 +48,7 @@ export const DashboardRender = function (context: any) {
 
                             <div className="tokens-claimed-wrapper">
                                 <div className="one-flex-item">
-                                    <div><strong>CAPs ready to be claimed from RRP:</strong></div>
+                                    <div><strong>CAPs earned from Registrations:</strong></div>
                                     <ul className="token-details">
                                         <li><span>CAPs from Registration</span>{(+context.state.claimTokens.signup).toFixed(2)}</li>
                                         <li><span>CAPs from Registration Referrals</span>{(+context.state.claimTokens.referral).toFixed(2)}</li>
@@ -57,12 +57,12 @@ export const DashboardRender = function (context: any) {
                                     </ul>
                                 </div>
                                 <div className="one-flex-item">
-                                    <div><strong>Value ready to be claimed from RRP:</strong></div>
+                                    <div><strong>The value of your CAPs:</strong></div>
                                     <ul className="token-details">
                                         <li><span>Today’s CAPSs to REMEs Conversion rate</span>6.028</li>
                                         <li><span>Total REMEs earned</span>{+(context.state.tokensForClaiming/6.028).toFixed(2)}</li>
                                         <li><span>REMEs exchange launch price</span> £0.10</li>
-                                        <li><span>Total value of your REMEs today</span>£&nbsp;{+((context.state.tokensForClaiming/6.028)*0.10).toFixed(2)}</li>
+                                        <li><span>Total value of your REMEs today</span><strong>£&nbsp;{+((context.state.tokensForClaiming/6.028)*0.10).toFixed(2)}</strong></li>
                                     </ul>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ export const DashboardRender = function (context: any) {
                             <div className="tokens-claimed-wrapper wrapper-with-icons">
                                 <div className="one-flex-item gray">
                                     <img className="top-over" src={TopOver} alt={'RemeLife'}/>
-                                    <div><strong>Caps converted to REMEs ready for use:</strong></div>
+                                    <div><strong>Caps converted to REMEs:</strong></div>
                                     <ul className="token-details">
                                         <li><span>REMEs available now</span><strong>{context.state.tokensBalance.formatted}</strong></li>
                                     </ul>
@@ -89,7 +89,7 @@ export const DashboardRender = function (context: any) {
 
                         <div className="rrp-section login">
                             <h3>ReMeLife Referral Program (RRP)</h3>
-                            <a href={context.state.referralPlatformUserLink} className="btn secondary green" target='_blank'>Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RRP</span>
+                            <a href={context.state.referralPlatformUserLink} className="btn secondary green" target='_blank'  rel="noreferrer" >Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RRP</span>
                                 <span className="mob">RRP</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.
                                 Just copy and share the link below, in an email something <a href={'https://healthconnected.agilecrm.com/forms/6713543266729984'} target={'_blank'} rel="noreferrer">like this.</a></p>
