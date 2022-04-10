@@ -8,6 +8,7 @@ import CopySVG from '../../../assets/images/copy.svg'
 import TopOver from '../../../assets/images/reme-icon.fw.png'
 import EthPng from '../../../assets/images/eth-icon.fw.png'
 import {Logout} from "../../logout";
+import {LogoutMobile} from "../../logout-mobile";
 
 export const DashboardRender = function (context: any) {
     return (
@@ -28,6 +29,7 @@ export const DashboardRender = function (context: any) {
                                         <li><a href="https://remelife.com/token-wallet-explanation/">Need help?</a></li>
                                         <li><a href="https://remelife.com/">ReMeLife</a></li>
                                         <li><a href="https://remelife.com/terms-and-conditions/">Terms & Conditions</a></li>
+                                        <LogoutMobile history={context.props.history} email={context.state.email} />
                                     </ul>
                                 </div>
                             </div>
@@ -87,7 +89,7 @@ export const DashboardRender = function (context: any) {
 
                         <div className="rrp-section login">
                             <h3>ReMeLife Referral Program (RRP)</h3>
-                            <a href={context.state.referralPlatformUserLink} className="btn secondary green">Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RRP</span>
+                            <a href={context.state.referralPlatformUserLink} className="btn secondary green" target='_blank'>Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RRP</span>
                                 <span className="mob">RRP</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.
                                 Just copy and share the link below, in an email something <a href={'https://healthconnected.agilecrm.com/forms/6713543266729984'} target={'_blank'} rel="noreferrer">like this.</a></p>
