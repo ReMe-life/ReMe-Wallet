@@ -19,7 +19,7 @@ export const DashboardRender = function (context: any) {
                         <div className="top-header">
                             <div className="title"><h1><img src={Logo} alt={'RemeLife'}/></h1></div>
                             <div className="nav-icon-box">
-                                <a href={'https://remelife.com/token-wallet-explanation/'} className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Need help?</a>
+                                <a href={'#'} target='_blank' rel='noreferrer' className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Need help?</a>
                                 <Logout history={context.props.history} email={context.state.email} />
                                 <img className="nav-icon" id="nav-icon-click"
                                      src={NavIcon} alt={'RemeLife'}/>
@@ -59,7 +59,7 @@ export const DashboardRender = function (context: any) {
                                 <div className="one-flex-item">
                                     <div><strong>The value of your CAPs:</strong></div>
                                     <ul className="token-details">
-                                        <li><span>Today’s CAPSs to REMEs Conversion rate</span>6.028</li>
+                                        <li><span>Today’s CAPs to REMEs Conversion rate</span>6.028</li>
                                         <li><span>Total REMEs earned</span>{+(context.state.tokensForClaiming/6.028).toFixed(2)}</li>
                                         <li><span>REMEs exchange launch price</span> £0.10</li>
                                         <li><span>Total value of your REMEs today</span><strong>£&nbsp;{+((context.state.tokensForClaiming/6.028)*0.10).toFixed(2)}</strong></li>
