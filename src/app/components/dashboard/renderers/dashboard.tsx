@@ -26,9 +26,9 @@ export const DashboardRender = function (context: any) {
                                 <img className="nav-icon-cross" src={NavIconCross} alt={"Reme"}/>
                                 <div className="top-menu" id="main-menu">
                                     <ul>
-                                        <li><a href="https://remelife.com/token-wallet-explanation/" target='_blank'>Need help?</a></li>
-                                        <li><a href="https://remelife.com/" target='_blank'>ReMeLife</a></li>
-                                        <li><a href="https://remelife.com/terms-and-conditions/" target='_blank'>Terms & Conditions</a></li>
+                                        <li><a href="https://remelife.com/token-wallet-explanation/" target='_blank' rel='noreferrer'>Need help?</a></li>
+                                        <li><a href="https://remelife.com/" target='_blank' rel='noreferrer'>ReMeLife</a></li>
+                                        <li><a href="https://remelife.com/terms-and-conditions/" target='_blank' rel='noreferrer'>Terms & Conditions</a></li>
                                         <LogoutMobile history={context.props.history} email={context.state.email} />
                                     </ul>
                                 </div>
