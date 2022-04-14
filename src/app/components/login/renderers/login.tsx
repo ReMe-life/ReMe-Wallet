@@ -18,7 +18,7 @@ export const LoginRender = function (context: any) {
                         <div className="login-actions">
                             <button type='button' className='btn primary login-action' disabled={context.state.loading} onClick={context.login}> {context.state.loading ? <div className='loader'></div> : 'Login'}</button>
                             <a className="login-action" href="/forgotten-password">Forgot Password?</a></div>
-                        <a href={'#'} target='_blank' className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }} rel='noreferrer'>
+                        <a href={'https://remelife.com/token-wallet-explanation/'} target='_blank' className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }} rel='noreferrer'>
                             Do you need help?
                         </a>
                     </form>

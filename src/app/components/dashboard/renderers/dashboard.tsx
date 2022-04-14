@@ -19,7 +19,7 @@ export const DashboardRender = function (context: any) {
                         <div className="top-header">
                             <div className="title"><h1><img src={Logo} alt={'RemeLife'}/></h1></div>
                             <div className="nav-icon-box">
-                                <a href={'#'} target='_blank' rel='noreferrer' className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Need help?</a>
+                                <a href={'https://remelife.com/token-wallet-explanation/'} target='_blank' rel='noreferrer' className="btn secondary green" onClick={() => { window.open('https://remelife.com/token-wallet-explanation/') }}>Need help?</a>
                                 <Logout history={context.props.history} email={context.state.email} />
                                 <img className="nav-icon" id="nav-icon-click"
                                      src={NavIcon} alt={'RemeLife'}/>
