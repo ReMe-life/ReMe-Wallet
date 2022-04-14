@@ -58,6 +58,7 @@ export const DashboardRender = function (context: any) {
                                 </div>
                                 <div className="one-flex-item">
                                     <div><strong>The value of your CAPs:</strong></div>
+
                                     <ul className="token-details">
                                         <li><span>Today’s CAPs to REMEs Conversion rate</span>6.028</li>
                                         <li><span>Total REMEs earned</span>{+(context.state.tokensForClaiming/6.028).toFixed(2)}</li>
