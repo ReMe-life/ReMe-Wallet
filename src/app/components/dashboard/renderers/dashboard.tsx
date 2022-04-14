@@ -79,9 +79,9 @@ export const DashboardRender = function (context: any) {
                                 </div>
                                 <div className="one-flex-item purple">
                                     <img className="top-over" src={EthPng} alt={'RemeLife'}/>
-                                    <div><strong>Your ETH balance:</strong></div>
+                                    <div><strong>Required ETH to convert CAPs:</strong></div>
                                     <ul className="token-details">
-                                        <li><span>Available ETH</span> <strong>{context.state.ethBalance.formatted}</strong></li>
+                                        <li><span>Number of ETH required at today's rate</span> <strong>{context.state.ethBalance.formatted}</strong></li>
                                     </ul>
                                 </div>
                             </div>
