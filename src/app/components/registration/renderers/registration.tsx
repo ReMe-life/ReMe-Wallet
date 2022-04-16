@@ -2,7 +2,7 @@ import React from 'react'
 import PasswordToggle from '../../../assets/svg/show-password.svg'
 import ApplicationBackground from '../../../assets/images/background.6e81d4b2.jpg'
 import Logo from '../../../assets/images/reme-logo.svg'
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export const RegistrationRender = function (context: any) {
     return (
