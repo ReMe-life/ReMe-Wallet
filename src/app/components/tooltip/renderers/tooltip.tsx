@@ -11,8 +11,9 @@ export const Tooltip = function (context: any) {
                 )}
                 position="right center"
                 closeOnDocumentClick
-                on={['hover', 'focus']}
+
             >
+                {/*on={['hover', 'focus']}*/}
                 <span>{ context.props.msg }</span>
             </Popup>
         </div>

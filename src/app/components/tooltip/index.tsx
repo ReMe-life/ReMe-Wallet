@@ -1,4 +1,3 @@
-import {render} from "react-dom";
 import { Component, ReactNode } from 'react'
 import { Tooltip } from './renderers'
 
