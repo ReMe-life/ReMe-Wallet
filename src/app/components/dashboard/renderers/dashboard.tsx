@@ -9,6 +9,8 @@ import TopOver from '../../../assets/images/reme-icon.fw.png'
 import EthPng from '../../../assets/images/eth-icon.fw.png'
 import {Logout} from "../../logout";
 import {LogoutMobile} from "../../logout-mobile";
+import {TooltipComponent} from "../../tooltip";
+
 
 export const DashboardRender = function (context: any) {
     return (
@@ -48,7 +50,10 @@ export const DashboardRender = function (context: any) {
 
                             <div className="tokens-claimed-wrapper">
                                 <div className="one-flex-item">
-                                    <div><strong>CAPs earned from Registrations:</strong></div>
+                                    <div>
+                                        <strong>CAPs earned from Registrations:</strong>
+                                        <TooltipComponent msg={'You earn 200 CAPs from registering as a Member and receive 100 CAPs for every one that you introduce that joins ReMeLIfe. You also receive 50 CAPs when anyone they invite joins and a further 25 when those in level 3 join up. You can view this 3 level network structure in the Referral Panel Program below.'} />
+                                    </div>
                                     <ul className="token-details">
                                         <li><span>CAPs from Registration</span>{(+context.state.claimTokens.signup).toFixed(2)}</li>
                                         <li><span>CAPs from Registration Referrals</span>{(+context.state.claimTokens.referral).toFixed(2)}</li>
@@ -57,8 +62,10 @@ export const DashboardRender = function (context: any) {
                                     </ul>
                                 </div>
                                 <div className="one-flex-item">
-                                    <div><strong>The value of your CAPs:</strong></div>
-
+                                    <div><strong>The value of your CAPs:</strong>
+                                        <TooltipComponent msg={'Your earned CAPs can be converted to REMEs (that are the actual crypto tokens), once we’ve launched the REME network. This is calculated at a conversion rate that reflects the network size and REME value at the time.\n' +
+                                        'This box shows the value of your CAPs if you converted them to REMEs today, based on the planned launch price of REMEs on a token exchange.'} />
+                                    </div>
                                     <ul className="token-details">
                                         <li><span>Today’s CAPs to REMEs Conversion rate</span>6.028</li>
                                         <li><span>Total REMEs earned</span>{+(context.state.tokensForClaiming/6.028).toFixed(2)}</li>
@@ -72,14 +79,18 @@ export const DashboardRender = function (context: any) {
                             <div className="tokens-claimed-wrapper wrapper-with-icons">
                                 <div className="one-flex-item gray">
                                     <img className="top-over" src={TopOver} alt={'RemeLife'}/>
-                                    <div><strong>Caps converted to REMEs:</strong></div>
+                                    <div><strong>Caps converted to REMEs:</strong>
+                                        <TooltipComponent msg={'This box shows how many CAPs you have converted to REMEs ready to be used for making purchases in the ReMe Market or sold on token exchanges.'} />
+                                    </div>
                                     <ul className="token-details">
                                         <li><span>REMEs available now</span><strong>{context.state.tokensBalance.formatted}</strong></li>
                                     </ul>
                                 </div>
                                 <div className="one-flex-item purple">
                                     <img className="top-over" src={EthPng} alt={'RemeLife'}/>
-                                    <div><strong>Required ETH to convert CAPs:</strong></div>
+                                    <div><strong>Required ETH to convert CAPs:</strong>
+                                        <TooltipComponent msg={'This shows the balance of ETH that will be required today to pay the transaction cost if you were to convert your CAPs to REMEs now.'} />
+                                    </div>
                                     <ul className="token-details">
                                         <li><span>Number of ETH required at today's rate</span> <strong>{context.state.ethBalance.formatted}</strong></li>
                                     </ul>
@@ -89,7 +100,7 @@ export const DashboardRender = function (context: any) {
                         </div>
 
                         <div className="rrp-section login">
-                            <h3>ReMeLife Referral Program (RRP)</h3>
+                            <h3>ReMeLife Referral Program (RRP) <TooltipComponent msg={'The ReMeLife Referral Program shows you your network of Members and enables you to invite others to join ReMeLife within your network so that you gain rewards from their activities.'} /></h3>
                             <a href={context.state.referralPlatformUserLink} className="btn secondary green" target='_blank'  rel="noreferrer" >Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RRP</span>
                                 <span className="mob">RRP</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.

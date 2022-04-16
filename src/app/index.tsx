@@ -1,6 +1,9 @@
 import './index.scss'
+import 'reactjs-popup/dist/index.css';
 import React, { Component, ReactNode } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import ApplicationBackground from './assets/images/background.6e81d4b2.jpg'
+
 
 import {
 	Login,
@@ -28,7 +31,7 @@ export class App extends Component<{}, State> {
 
 	public render (): ReactNode {
 		return (
-			<div className='application'>
+			<div className='application' style={{backgroundImage: `url(${ApplicationBackground})`}}>
 				{/*<Title />*/}
 				<Router>
 					<Route exact path="/" component={Login} />

@@ -227,6 +227,11 @@ line-height: 26px;
 letter-spacing: 0.02em;
 color: #7C7C7C; text-align:left;position:relative;
 }
+.homepage .common-wrapper .one-flex-item .one-flex-svg {
+    position: absolute;
+    top: 22px;
+    right: 18px
+}
 .homepage .common-wrapper .one-flex-item.gray{background:#B3B3B3; padding-top:40px; margin-top:40px;}
 .homepage .common-wrapper .one-flex-item.purple{background:#E5CDFF; padding-top:40px; margin-top:40px;}
 .homepage .common-wrapper .one-flex-item strong,span.tokens-total-amount{ color:#000;}
@@ -375,4 +380,27 @@ button.primary {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+
+.tooltip-popup {
+    color: red;
+    display: inline;
+}
+
+[role='tooltip'].popup-content {
+    width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+    background: linear-gradient(180deg, #321E32 0%, #321E32 118.25%);
+    border-radius: 20px;
+    color: white;
+}
+[data-popup='tooltip'].popup-overlay {
+    background: transparent;
+}
+[data-popup='tooltip'].popup-arrow > svg {
+    background: red;
+}
+
+svg.popup-arrow {
+    color: #321D31;
 }

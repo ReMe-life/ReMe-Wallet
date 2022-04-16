@@ -2,6 +2,7 @@ import React from 'react'
 import PasswordToggle from '../../../assets/svg/show-password.svg'
 import ApplicationBackground from '../../../assets/images/background.6e81d4b2.jpg'
 import Logo from '../../../assets/images/reme-logo.svg'
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const RegistrationRender = function (context: any) {
     return (
@@ -30,6 +31,10 @@ export const RegistrationRender = function (context: any) {
                                 <button onClick={() => { window.open('https://remelife.com/terms-and-conditions/') }}> Terms of Service/Conditions</button>
                         </div>
                         </p>
+                        <ReCAPTCHA
+                            sitekey="6Ldn3IcUAAAAAOioZEzPCgnTslX_YquZqQNIhO5M"
+                            onChange={context.onChange}
+                        />
                         <button type='button' className='btn primary' disabled={context.state.loading} onClick={context.register}> {context.state.loading ? <div className='loader'></div> : 'Register'}</button>
                     </form>
                 </div>
