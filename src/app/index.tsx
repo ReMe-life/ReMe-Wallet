@@ -1,5 +1,5 @@
 import './index.scss'
-import 'reactjs-popup/dist/index.css';
+import 'node_modules/reactjs-popup/dist/index.css';
 import React, { Component, ReactNode } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ApplicationBackground from './assets/images/background.6e81d4b2.jpg'
