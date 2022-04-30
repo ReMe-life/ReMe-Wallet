@@ -10,6 +10,7 @@ import EthPng from '../../../assets/images/eth-icon.fw.png'
 import {Logout} from "../../logout";
 import {LogoutMobile} from "../../logout-mobile";
 import {TooltipComponent} from "../../tooltip";
+import Popup from "reactjs-popup";
 
 
 export const DashboardRender = function (context: any) {
@@ -104,7 +105,44 @@ export const DashboardRender = function (context: any) {
                             <a href={context.state.referralPlatformUserLink} className="btn secondary green" target='_blank'  rel="noreferrer" >Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RRP</span>
                                 <span className="mob">RRP</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.
-                                Just copy and share the link below, in an email something <a href={'https://healthconnected.agilecrm.com/forms/6713543266729984'} target={'_blank'} rel="noreferrer">like this.</a></p>
+                                Just copy and share the link below, in an email something
+                                <Popup trigger={<a  rel='noreferrer' style={{color: 'red'}}> here </a>} modal closeOnDocumentClick>
+                                    {(close: any) => (
+                                        <div>
+                                            <div>
+                                                <h3>Inviting your family,friends & network to join ReMeLife</h3>
+                                                <p>Here's some text that you can copy, paste, edit and send to your friends, in an email or using social media.</p>
+                                                <p>Hi XXX,</p>
+                                                <p>I’ve joined as a member of the ReMeLife Community. I think you'll find it to be of interest to you. And I’d like you to join my network.</p>
+                                                <p>ReMeLife is an online platform that supports families and those that need to be connected, especially when care is involved. ReMeLife provides free apps and many useful services. But perhaps its most unique feature is that when you use ReMeLife’s apps to support and engage with others in your social, family and care network, you earn crypto tokens.</p>
+                                                <p>You earn them as you do those things that you're probably doing already. And you earn them passively in background. They just appear in your wallet. Soon you’ll be able to buy products and trade them for cash.</p>
+                                                <p>So, I'd like to invite you to join my network, and to also build your own. There are no costs, no work involved and no catches. ReMeLife just provides great free apps and a means to monetise your daily digital family and care actions, for your own benefit instead of for the tech giants.</p>
+                                                <p>It’s simple and free. Just visit www.ReMeLife.com, have a look around and then click any ‘Join as a Member’ button (or click https://remelife.com/remelife-membership/) and follow the instructions.</p>
+                                                <p>When you're asked during registration to register for your ReMe Wallet, you'll be asked if you were introduced by anyone (that's me). Please then enter this Referral link URL, so you’ll join only my network: https://wallet.remelife.com/registration/E922J624C????? (enter yours as provided in your wallet).</p>
+                                                <p>That’s it. Do get in touch if you want to learn more about it all.</p>
+                                                <p>Best wishes, XXX</p>
+                                                <h6>It's as easy as that. You'll be earning rewards in no time.</h6>
+                                            </div>
+                                            <img src={CopySVG} alt='Show/hide' style={{cursor: 'pointer'}} onClick={()=>navigator.clipboard.writeText('<h3>Inviting your family,friends & network to join ReMeLife</h3>\n' +
+                                                '                                                <p>Here\'s some text that you can copy, paste, edit and send to your friends, in an email or using social media.</p>\n' +
+                                                '                                                <p>Hi XXX,</p>\n' +
+                                                '                                                <p>I’ve joined as a member of the ReMeLife Community. I think you\'ll find it to be of interest to you. And I’d like you to join my network.</p>\n' +
+                                                '                                                <p>ReMeLife is an online platform that supports families and those that need to be connected, especially when care is involved. ReMeLife provides free apps and many useful services. But perhaps its most unique feature is that when you use ReMeLife’s apps to support and engage with others in your social, family and care network, you earn crypto tokens.</p>\n' +
+                                                '                                                <p>You earn them as you do those things that you\'re probably doing already. And you earn them passively in background. They just appear in your wallet. Soon you’ll be able to buy products and trade them for cash.</p>\n' +
+                                                '                                                <p>So, I\'d like to invite you to join my network, and to also build your own. There are no costs, no work involved and no catches. ReMeLife just provides great free apps and a means to monetise your daily digital family and care actions, for your own benefit instead of for the tech giants.</p>\n' +
+                                                '                                                <p>It’s simple and free. Just visit www.ReMeLife.com, have a look around and then click any ‘Join as a Member’ button (or click https://remelife.com/remelife-membership/) and follow the instructions.</p>\n' +
+                                                '                                                <p>When you\'re asked during registration to register for your ReMe Wallet, you\'ll be asked if you were introduced by anyone (that\'s me). Please then enter this Referral link URL, so you’ll join only my network: https://wallet.remelife.com/registration/E922J624C????? (enter yours as provided in your wallet).</p>\n' +
+                                                '                                                <p>That’s it. Do get in touch if you want to learn more about it all.</p>\n' +
+                                                '                                                <p>Best wishes, XXX</p>\n' +
+                                                '                                                <h6>It\'s as easy as that. You\'ll be earning rewards in no time.</h6>' +
+                                                '')} />
+                                            <a className="close" onClick={close}>
+                                                &times;
+                                            </a>
+                                        </div>
+                                    )}
+                                </Popup>.
+                            </p>
                             <div className="password-wrapper"><input size={30}
                                                                      value={context.state.referralCode}
                                                                      type="text" className="form-control input" />

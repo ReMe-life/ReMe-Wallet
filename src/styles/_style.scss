@@ -406,3 +406,32 @@ button.primary {
 svg.popup-arrow {
     color: #321D31;
 }
+
+
+.popup-content {
+    width: 85% !important;
+    background: #321E32 !important;
+    margin: auto;
+    background: #fff;
+    width: 50%;
+    color: white;
+    border-radius: 22px;
+    padding: 5px;
+    border: 1px solid #d7d7d7;
+}
+.close {
+    position: absolute;
+    float: right;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: white !important;
+    border: 1px solid;
+    border-radius: 50px;
+    cursor: pointer;
+    /* opacity: .5; */
+    top: 1rem;
+    right: 1rem;
+    width: 60px;
+    height: 60px;
+}

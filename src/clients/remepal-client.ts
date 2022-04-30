@@ -58,7 +58,7 @@ export class ReMePalClient {
     static async forgotPassword (email: string): Promise<void> {
         await HTTPRequester.post(
             `${process.env.REACT_APP_REMEPAL_API}/auth/reset`,
-            { email }
+            { email, 'callback': 'https://wallet.staging.remelife.com' }
         )
     }
 
