@@ -106,7 +106,7 @@ export const DashboardRender = function (context: any) {
                                 <span className="mob">RRP</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.
                                 Just copy and share the link below, in an email something
-                                <Popup trigger={<a  rel='noreferrer' style={{color: 'red'}}> here </a>} modal closeOnDocumentClick>
+                                <Popup trigger={<a  rel='noreferrer' style={{color: 'red', cursor: 'pointer'}}> here </a>} modal closeOnDocumentClick>
                                     {(close: any) => (
                                         <div>
                                             <div>
