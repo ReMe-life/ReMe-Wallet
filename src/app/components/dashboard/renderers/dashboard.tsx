@@ -121,7 +121,7 @@ export const DashboardRender = function (context: any) {
                                                 <p>When you're asked during registration to register for your ReMe Wallet, you'll be asked if you were introduced by anyone (that's me). Please then enter this Referral link URL, so you’ll join only my network: https://wallet.remelife.com/registration/E922J624C????? (enter yours as provided in your wallet).</p>
                                                 <p>That’s it. Do get in touch if you want to learn more about it all.</p>
                                                 <p>Best wishes, XXX</p>
-                                                <h6>It's as easy as that. You'll be earning rewards in no time.</h6>
+                                                <p>It's as easy as that. You'll be earning rewards in no time.</p>
                                             </div>
                                             <img src={CopySVG} alt='Show/hide' style={{cursor: 'pointer'}} onClick={()=>navigator.clipboard.writeText('<h3>Inviting your family,friends & network to join ReMeLife</h3>\n' +
                                                 '                                                <p>Here\'s some text that you can copy, paste, edit and send to your friends, in an email or using social media.</p>\n' +
