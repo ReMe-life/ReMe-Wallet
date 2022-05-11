@@ -390,7 +390,7 @@ button.primary {
 }
 
 [role='tooltip'].popup-content {
-    width: 200px;
+    width: 200px !important;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
     background: linear-gradient(180deg, #321E32 0%, #321E32 118.25%);
     border-radius: 20px;
