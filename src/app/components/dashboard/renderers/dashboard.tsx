@@ -101,17 +101,17 @@ export const DashboardRender = function (context: any) {
                         </div>
 
                         <div className="rrp-section login">
-                            <h3>ReMeLife Referral Program (RRP) <TooltipComponent msg={'The ReMeLife Referral Program shows you your network of Members and enables you to invite others to join ReMeLife within your network so that you gain rewards from their activities.'} /></h3>
+                            <h3>ReMeLife Community Builder (RCB) <TooltipComponent msg={'The ReMeLife Referral Program shows you your network of Members and enables you to invite others to join ReMeLife within your network so that you gain rewards from their activities.'} /></h3>
                             <a href={context.state.referralPlatformUserLink} className="btn secondary green" target='_blank'  rel="noreferrer" >Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RRP</span>
-                                <span className="mob">RRP</span>&gt;</a>
+                                <span className="mob">RCB</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.
-                                Just copy and share the link below, in an email something
+                                Just copy and share the link below, in an email something like this
                                 <Popup trigger={<a  rel='noreferrer' style={{color: 'red', cursor: 'pointer'}}> here </a>} modal closeOnDocumentClick>
                                     {(close: any) => (
                                         <div>
-                                            <div>
-                                                <h3>Inviting your family,friends & network to join ReMeLife</h3>
-                                                <p>Here's some text that you can copy, paste, edit and send to your friends, in an email or using social media.</p>
+                                            <div style={{paddingLeft: '20px',paddingRight: '20px' , textAlign: 'left'}}>
+                                                <h3 style={{textAlign: 'center'}}>Inviting your family,friends & network to join ReMeLife</h3>
+                                                <h4 style={{textAlign: 'center'}}>Here's some text that you can copy, paste, edit and send to your friends, in an email or using social media.</h4>
                                                 <p>Hi XXX,</p>
                                                 <p>I’ve joined as a member of the ReMeLife Community. I think you'll find it to be of interest to you. And I’d like you to join my network.</p>
                                                 <p>ReMeLife is an online platform that supports families and those that need to be connected, especially when care is involved. ReMeLife provides free apps and many useful services. But perhaps its most unique feature is that when you use ReMeLife’s apps to support and engage with others in your social, family and care network, you earn crypto tokens.</p>
@@ -121,7 +121,7 @@ export const DashboardRender = function (context: any) {
                                                 <p>When you're asked during registration to register for your ReMe Wallet, you'll be asked if you were introduced by anyone (that's me). Please then enter this Referral link URL, so you’ll join only my network: https://wallet.remelife.com/registration/E922J624C????? (enter yours as provided in your wallet).</p>
                                                 <p>That’s it. Do get in touch if you want to learn more about it all.</p>
                                                 <p>Best wishes, XXX</p>
-                                                <p>It's as easy as that. You'll be earning rewards in no time.</p>
+                                                <p style={{textAlign: 'center'}}>It's as easy as that. You'll soon be earning passive monthly rewards.</p>
                                             </div>
                                             <img src={CopySVG} alt='Show/hide' style={{cursor: 'pointer'}} onClick={()=>navigator.clipboard.writeText('<h3>Inviting your family,friends & network to join ReMeLife</h3>\n' +
                                                 '                                                <p>Here\'s some text that you can copy, paste, edit and send to your friends, in an email or using social media.</p>\n' +
