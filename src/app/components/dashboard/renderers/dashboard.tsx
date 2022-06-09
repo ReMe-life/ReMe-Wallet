@@ -102,7 +102,7 @@ export const DashboardRender = function (context: any) {
 
                         <div className="rrp-section login">
                             <h3>ReMeLife Community Builder (RCB) <TooltipComponent msg={'The ReMeLife Referral Program shows you your network of Members and enables you to invite others to join ReMeLife within your network so that you gain rewards from their activities.'} /></h3>
-                            <a href={context.state.referralPlatformUserLink} className="btn secondary green" target='_blank'  rel="noreferrer" >Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RRP</span>
+                            <a href={context.state.referralPlatformUserLink} className="btn secondary green" target='_blank'  rel="noreferrer" >Visit the <span className="dt" onClick={() => window.open(`${context.state.referralPlatformUserLink}`)}>RCB</span>
                                 <span className="mob">RCB</span>&gt;</a>
                             <p>Earn bonus REME tokens when you invite friends and family.
                                 Just copy and share the link below, in an email something like this
